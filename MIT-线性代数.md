@@ -152,11 +152,11 @@ $$
     \begin{bmatrix}
         b_{11}\\
         b_{21}\\
-    \end{bmatrix} \bigoplus \pmb{A}
+    \end{bmatrix} \oplus \pmb{A}
     \begin{bmatrix}
         b_{21}\\
         b_{22}\\
-    \end{bmatrix} \bigoplus \pmb{A}
+    \end{bmatrix} \oplus \pmb{A}
     \begin{bmatrix}
         b_{31}\\
         b_{32}\\
@@ -167,16 +167,16 @@ $$
     \pmb{AB} = 
     \begin{bmatrix}
         a_{11} & a_{12}
-    \end{bmatrix} \pmb{B} \bigoplus 
+    \end{bmatrix} \pmb{B} \oplus 
     \begin{bmatrix}
         a_{21} & a_{22}
-    \end{bmatrix} \pmb{B} \bigoplus 
+    \end{bmatrix} \pmb{B} \oplus 
     \begin{bmatrix}
         a_{31} & a_{32}
     \end{bmatrix} \pmb{B}
     \tag{2-5}
 $$
-此时 $\bigoplus$ 视情况分别表示**列向量在横向**或**行向量在纵向**的拼接。除了上述三种运算角度，其实还有**行视图**、**列视图**混用的第四种形式：
+此时运算符 “ $\oplus$ ” 视情况分别表示**列向量在横向**或**行向量在纵向**的拼接。除了上述三种运算角度，其实还有**行视图**、**列视图**混用的第四种形式：
 > The 4th way: a column of $\pmb{A}$ times a row of $\pmb{B}$ to get a partial matrix of $\pmb{C}$
 
 $$
@@ -210,20 +210,23 @@ $$
 上述结论通常与行（列）空间结合，帮助我们判断矩阵是否可逆（满秩）。
 
 ### 2.3 矩阵初等变换的意义
-对矩阵 $\pmb{X}$ 进行单次初等行变换，相当于 $\pmb{X}$ 左乘一个操作矩阵 $\pmb{H}$，例如矩阵**第一行不变**、**第二行减去第一行的两倍**：
+对矩阵 $\pmb{X}$ 进行单次初等行变换，相当于 $\pmb{X}$ 左乘一个操作矩阵 $\pmb{R}$，例如矩阵**第一行不变**、**第二行减去第一行的两倍**：
 $$
-    \begin{bmatrix}
-        x_{11} & x_{12}\\
-        x_{21}-2x_{11} & x_{22}-2x_{12}\\
-    \end{bmatrix} \Leftrightarrow 
-    \begin{bmatrix}
-        1 & 0\\
-        -2 & 1\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        x_{11} & x_{12}\\
-        x_{21} & x_{22}\\
-    \end{bmatrix}
+    \underbrace{
+        \begin{bmatrix}
+            x_{11} & x_{12}\\
+            x_{21}-2x_{11} & x_{22}-2x_{12}\\
+        \end{bmatrix}}_{\pmb{Y}} \Leftrightarrow 
+    \underbrace{
+        \begin{bmatrix}
+            1 & 0\\
+            -2 & 1\\
+        \end{bmatrix}}_{\pmb{R}}
+    \underbrace{
+        \begin{bmatrix}
+            x_{11} & x_{12}\\
+            x_{21} & x_{22}\\
+        \end{bmatrix}}_{\pmb{X}}
     \tag{2-7}
 $$
 上述过程太抽象？回过头去看看式 (2-1) 和 (2-5)，想想矩阵的**行视图**、矩阵乘法的**行型**：
@@ -236,20 +239,22 @@ $$
         x_{11} & x_{12}\\
         x_{21} & x_{22}\\
     \end{bmatrix} = 
-    \begin{bmatrix}
-        1 & 0\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        x_{11} & x_{12}\\
-        x_{21} & x_{22}\\
-    \end{bmatrix} + 
-    \begin{bmatrix}
-        -2 & 1\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        x_{11} & x_{12}\\
-        x_{21} & x_{22}\\
-    \end{bmatrix}
+    \underbrace{
+        \begin{bmatrix}
+            1 & 0\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_{11} & x_{12}\\
+            x_{21} & x_{22}\\
+        \end{bmatrix}}_{1st \ row \ of \ \pmb{Y}} \oplus 
+    \underbrace{
+        \begin{bmatrix}
+            -2 & 1\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_{11} & x_{12}\\
+            x_{21} & x_{22}\\
+        \end{bmatrix}}_{2nd \ row \ of \ \pmb{Y}}
     \tag{2-8}
 $$
 $$
@@ -266,7 +271,7 @@ $$
         \end{bmatrix} + 0 \times
         \begin{bmatrix}
             x_{21} & x_{22}\\
-        \end{bmatrix}, \ (row \ 1)\\
+        \end{bmatrix}\\
         \\
         \begin{bmatrix}
             -2 & 1\\
@@ -280,26 +285,28 @@ $$
         \end{bmatrix} + 1 \times
         \begin{bmatrix}
             x_{21} & x_{22}\\
-        \end{bmatrix}, \ (row \ 2)\\
+        \end{bmatrix}\\
     \end{cases}
     \tag{2-9}
 $$
-对应地，单次初等列变换等价于 $\pmb{X}$ 右乘一个操作矩阵 $\pmb{V}$，例如矩阵**第一列除以2**、**第二列乘3以后加上第一列变换后的5倍**：
+对应地，单次初等列变换等价于 $\pmb{X}$ 右乘一个操作矩阵 $\pmb{C}$，例如矩阵**第一列除以2**、**第二列乘3以后加上第一列变换后的5倍**：
 $$
     \begin{bmatrix}
         \dfrac{x_{11}}{2} & 3x_{12}+\dfrac{5 x_{11}}{2}\\
         \\
         \dfrac{x_{21}}{2} & 3x_{22}+\dfrac{5 x_{21}}{2}\\
-    \end{bmatrix} \Leftrightarrow 
-    \begin{bmatrix}
-        x_{11} & x_{12}\\
-        x_{21} & x_{22}\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        \dfrac{1}{2} & \dfrac{5}{2}\\
-        \\
-        0 & 3\\
-    \end{bmatrix}
+    \end{bmatrix} \Leftrightarrow
+    \underbrace{
+        \begin{bmatrix}
+            x_{11} & x_{12}\\
+            x_{21} & x_{22}\\
+        \end{bmatrix}}_{\pmb{X}}
+    \underbrace{
+        \begin{bmatrix}
+            \dfrac{1}{2} & \dfrac{5}{2}\\
+            \\
+            0 & 3\\
+        \end{bmatrix}}_{\pmb{C}}
     \tag{2-10}
 $$
 朝闻道，夕死可矣。
@@ -404,4 +411,5 @@ $$
     \end{bmatrix}
     \tag{2-14}
 $$
+这一点很好理解，首先对于 $\pmb{B}$ 以及 $\hat{\pmb{B}}$ 的增广部分 ( $\pmb{I}$ ) 而言，二者进行了同步初等行变换，即左乘了同一个操作矩阵（ $\pmb{R}$ ）。 $\pmb{B}$ 经过变换后成为了 $\pmb{I}$，这意味着 $\pmb{R} = \pmb{B}^T$，那自然也有 $\pmb{RI}=\pmb{R}$，所以增广部分就会转换成逆矩阵。
 ***
