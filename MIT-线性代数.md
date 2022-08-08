@@ -35,14 +35,10 @@ $$
         a_{31} & a_{32} & a_{33}\\
     \end{bmatrix}
     \begin{bmatrix}
-        x_1\\
-        x_2\\
-        x_3\\
+        x_1\\ x_2\\ x_3\\
     \end{bmatrix} = 
     \begin{bmatrix}
-        b_1\\
-        b_2\\
-        b_3\\
+        b_1\\ b_2\\ b_3\\
     \end{bmatrix} \ \Longrightarrow \ \pmb{A} \pmb{x}^T = \pmb{b}^T
     \tag {1-1-1}
 $$
@@ -52,26 +48,16 @@ $$
 $$
     x_1
     \begin{bmatrix}
-        a_{11}\\
-        a_{21}\\
-        a_{31}\\
-    \end{bmatrix} +  
-    x_2
+        a_{11}\\ a_{21}\\ a_{31}\\
+    \end{bmatrix} + x_2
     \begin{bmatrix}
-        a_{12}\\
-        a_{22}\\
-        a_{32}\\
-    \end{bmatrix} + 
-    x_3
+        a_{12}\\ a_{22}\\ a_{32}\\
+    \end{bmatrix} + x_3
     \begin{bmatrix}
-        a_{13}\\
-        a_{23}\\
-        a_{33}\\
+        a_{13}\\ a_{23}\\ a_{33}\\
     \end{bmatrix} = 
     \begin{bmatrix}
-        b_1\\
-        b_2\\
-        b_3\\
+        b_1\\ b_2\\ b_3\\
     \end{bmatrix}
     \tag {1-1-2}
 $$
@@ -83,7 +69,7 @@ $$
 对于向量 & 矩阵的乘法 $\pmb{aX}=\pmb{b}$ ：
 $$
     \begin{bmatrix}
-        a_1 & a_2 & a_3
+        a_1 & a_2 & a_3\\
     \end{bmatrix}
     \begin{bmatrix}
         x_{11} & x_{12} & x_{13}\\
@@ -91,7 +77,7 @@ $$
         x_{31} & x_{32} & x_{33}\\
     \end{bmatrix} = 
     \begin{bmatrix}
-        b_1 & b_2 & b_3
+        b_1 & b_2 & b_3\\
     \end{bmatrix}
     \tag {2-1-1}
 $$
@@ -99,18 +85,16 @@ $$
 $$
     a_1
     \begin{bmatrix}
-        x_{11} & x_{12} & x_{13}
-    \end{bmatrix} + 
-    a_2
+        x_{11} & x_{12} & x_{13}\\
+    \end{bmatrix} + a_2
     \begin{bmatrix}
-        x_{21} & x_{22} & x_{23}
-    \end{bmatrix} + 
-    a_3
+        x_{21} & x_{22} & x_{23}\\
+    \end{bmatrix} + a_3
     \begin{bmatrix}
-        x_{31} & x_{32} & x_{33}
+        x_{31} & x_{32} & x_{33}\\
     \end{bmatrix} = 
     \begin{bmatrix}
-        b_1 & b_2 & b_3
+        b_1 & b_2 & b_3\\
     \end{bmatrix}
     \tag{2-1-2}
 $$
@@ -144,29 +128,26 @@ $$
 $$
     \pmb{AB} = \pmb{A}
     \begin{bmatrix}
-        b_{11}\\
-        b_{21}\\
+        b_{11}\\ b_{21}\\
     \end{bmatrix} \oplus \pmb{A}
     \begin{bmatrix}
-        b_{21}\\
-        b_{22}\\
+        b_{21}\\ b_{22}\\
     \end{bmatrix} \oplus \pmb{A}
     \begin{bmatrix}
-        b_{31}\\
-        b_{32}\\
+        b_{31}\\ b_{32}\\
     \end{bmatrix}
     \tag{2-2-2}
 $$
 $$
     \pmb{AB} = 
     \begin{bmatrix}
-        a_{11} & a_{12}
+        a_{11} & a_{12}\\
     \end{bmatrix} \pmb{B} \oplus 
     \begin{bmatrix}
-        a_{21} & a_{22}
+        a_{21} & a_{22}\\
     \end{bmatrix} \pmb{B} \oplus 
     \begin{bmatrix}
-        a_{31} & a_{32}
+        a_{31} & a_{32}\\
     \end{bmatrix} \pmb{B}
     \tag{2-2-3}
 $$
@@ -176,23 +157,17 @@ $$
 $$
     \pmb{AB} = 
     \begin{bmatrix}
-        a_{11}\\
-        a_{21}\\
-        a_{31}
+        a_{11}\\ a_{21}\\ a_{31}\\
     \end{bmatrix}
     \begin{bmatrix}
-        b_{11} & b_{12} & b_{13}
+        b_{11} & b_{12} & b_{13}\\
     \end{bmatrix} + 
     \begin{bmatrix}
-        a_{12}\\
-        a_{22}\\
-        a_{32}
+        a_{12}\\ a_{22}\\ a_{32}\\
     \end{bmatrix}
     \begin{bmatrix}
-        b_{21} & b_{22} & b_{23}
-    \end{bmatrix} = 
-    \sum_i \pmb{A}(:,i) \pmb{B}(i,:)
-    \\
+        b_{21} & b_{22} & b_{23}\\
+    \end{bmatrix} = \sum_i \pmb{A}(:,i) \pmb{B}(i,:)
     \tag{2-2-4}
 $$
 这种混合视图隐藏的信息非常重要：
@@ -213,8 +188,7 @@ $$
         \end{bmatrix}}_{\pmb{Y}} \Longleftrightarrow 
     \underbrace{
         \begin{bmatrix}
-            1 & 0\\
-            -2 & 1\\
+            1 & 0\\ -2 & 1\\
         \end{bmatrix}}_{\pmb{E}}
     \underbrace{
         \begin{bmatrix}
@@ -226,8 +200,7 @@ $$
 上述过程太抽象？回过头去看看式（2-1-2）和（2-2-3），想想矩阵的**行视图**、矩阵乘法的**行型**：
 $$
     \begin{bmatrix}
-        1 & 0\\
-        -2 & 1\\
+        1 & 0\\ -2 & 1\\
     \end{bmatrix}
     \begin{bmatrix}
         x_{11} & x_{12}\\
@@ -292,8 +265,7 @@ $$
     \end{bmatrix} \Leftrightarrow
     \underbrace{
         \begin{bmatrix}
-            x_{11} & x_{12}\\
-            x_{21} & x_{22}\\
+            x_{11} & x_{12}\\ x_{21} & x_{22}\\
         \end{bmatrix}}_{\pmb{X}}
     \underbrace{
         \begin{bmatrix}
@@ -329,21 +301,18 @@ $$
 $$
     \pmb{B} = 
     \begin{bmatrix}
-        1 & 3\\
-        2 & 7\\
+        1 & 3\\ 2 & 7\\
     \end{bmatrix}
 $$
 关于如何求解逆矩阵 $\pmb{B}^{-1}$，有两种主要思路，**第一种**是 *Gauss's way*，即依次求解二元一次线性方程组：
 $$
     \pmb{B} \pmb{x}_1 = 
     \begin{bmatrix}
-        1\\
-        0\\
+        1\\ 0\\
     \end{bmatrix}, \ 
     \pmb{B} \pmb{x}_2 = 
     \begin{bmatrix}
-        0\\
-        1\\
+        0\\ 1\\
     \end{bmatrix} \ \Longrightarrow \ 
     \pmb{B}^{-1} = 
     \begin{bmatrix}
@@ -389,8 +358,7 @@ $$
 $$
     \pmb{B}^{-1} = 
     \begin{bmatrix}
-        7 & -3\\
-        -2 & 1\\
+        7 & -3\\ -2 & 1\\
     \end{bmatrix}
 $$
 ***
@@ -567,9 +535,9 @@ $$
 
 ## 5 向量空间
 ### 5.1 线性空间、线性子空间
-在我国高等教育体系中（非数学系），关于这一部分的数学知识通常在应用泛函分析这门课程里才会得到真正重视，此时大伙多半已经是研究生了。而年级越高，讲课的、听课的往往都越混，尤以前者为甚。因此再度惋惜自己没能在初见线代的时候学习 **MIT-18.06**，导致后面一系列数学类课程都难说掌握透彻。
+在我国高等教育体系中（非数学系），关于这一部分的数学知识通常在应用泛函分析这门课程里才会得到真正重视，此时大伙多半已经是研究生了。而年级越高，讲课的、听课的往往都越混，尤以前者为甚。再度惋惜自己没能在初见线代的时候学习 **MIT-18.06**，后边用得多了发现线代根本没有考试时那么可怕。
 
-对于任意一个线性空间 $\pmb{M}$ ，属于该空间的元素 $m_1$、$m_2$ 等均需满足对**数乘**与**加法**运算的封闭性，即有 $m_1 + m_2 \in \pmb{M}$、$km_1 \in \pmb{M}$（$k \in \mathbb{R}$），且空间内必须存在一个零元。具体到加法、数乘的方式，可以脱离常规定义，只要满足封闭性即可。同理，零元的定义也与数字 0 有所区别。具体定义在此就不详述了，毕竟这门课不是泛函。
+对于任意一个线性空间 $\pmb{M}$ ，属于该空间的元素 $m_1$、$m_2$ 等均需满足对**数乘**与**加法**运算的封闭性，即有 $a \times m_1 + b \times m_2 \in \pmb{M}$（$\forall  \ a,b \in \mathbb{R}$），且空间内必须存在一个零元。具体到加法、数乘的方式，可以脱离常规定义，只要满足封闭性即可。同理，零元的定义也与数字 0 有所区别。具体定义在此就不详述了，感兴趣的可以参考泛函的相关知识。
 
 上述结论同样适用于线性空间的线性子空间。这里我们需要研究一下常见空间的线性子空间，以 $\mathbb{R}^2$ 为例。以下三类都是 $\mathbb{R}^2$ 的线性子空间：
 
@@ -581,14 +549,85 @@ $$
 
 对于 $\mathbb{R}^3$ 呢？我们很容易想到两个极端：（1）$\mathbb{R}^3$ 本身；（2）$\pmb{0}$。结合 $\mathbb{R}^2$ 的经验我们知道还有（3）任意穿过原点的平面；以及最后（4）穿过原点的直线。
 
-### 5.2 矩阵如何构成子空间
-以矩阵 $\pmb{A}$ 为例：
+### 5.2 如何构成子空间
+当谈论到子空间时，我们的基础语境是已经存在了一个线性空间作为“母空间”。这里给出一种面向一般情况的构建方法，以 $\mathbb{R}^3$ 为例。假设 $\pmb{P}$、$\pmb{l}$ 分别是 $\mathbb{R}^3$ 中经过原点的某平面、某直线，显然后两者都是前者的子空间。现在我们考虑集合运算“并”（$\cup$）与“交”（$\cap$），即 $\pmb{P} \cup \pmb{l}$ 与 $\pmb{P} \cap \pmb{l}$：
+
+（1）$\pmb{P} \cup \pmb{l}$ **不是子空间**。因为在 $\pmb{P}$ 上取某向量 $\pmb{p}$ 与 $\pmb{l}$ 中的某向量相加，其结果很可能既不在平面 $\pmb{P}$ 上，也不在直线 $\pmb{l}$ 上，因此该空间对加法运算不封闭，所以不是 $\mathbb{R}^3$ 的子空间。
+
+（2）$\pmb{P} \cap \pmb{l}$ **是子空间**。事实上 $\pmb{P} \cap \pmb{l} = \pmb{0}$。
+
+更一般地，对于同属某一线性空间的两个子空间 $\pmb{S}$ 与 $\pmb{T}$，$\pmb{S} \cap \pmb{T}$ 仍然是子空间，但 $\pmb{S} \cup \pmb{T}$ **通常**不满足子空间条件。简单证明一下，$\forall \ \pmb{v},\pmb{w} \in \pmb{S} \cap \pmb{T}$，均有：
+$$
+    (a\pmb{v}+b\pmb{w}) \in \pmb{S}, \ (a\pmb{v}+b\pmb{w}) \in \pmb{T}
+    \Longrightarrow \ (a\pmb{v}+b\pmb{w}) \in \pmb{S} \cap \pmb{T}, \ \forall a,b \in \mathbb{R}
+    \tag{5-2-1}
+$$
+除了上述抽象方法，我们当然可以从一个具体的矩阵入手来构造一系列子空间。这些内容将在下一节详细展开。
+
+### 5.3 列空间 & 零空间
+以矩阵 $\pmb{X} \in \mathbb{R}^{3 \times 2}$ 为例。$\pmb{X}$ 的各列都属于 $\mathbb{R}^3$，因此列向量 $\pmb{X}(:,i)$ 的全体线性组合可以构成一个 $\mathbb{R}^3$ 的线性子空间，称为 $\pmb{X}$ 的**列空间**，记为 $\pmb{C}(\pmb{X})$。从欧氏几何的角度来看，$\pmb{C}(\pmb{X})$ 是一个过原点的平面（列向量不共线），$\pmb{X}$ 的两个列向量位于平面上。列空间有什么作用呢？我们通过一个实例来说明。
+
+给定系数矩阵 $\pmb{A}$（这个例子将会持续存在一段时间）以及线性方程组 $\pmb{A} \pmb{x}^T = \pmb{b}^T$：
 $$
     \pmb{A} = 
     \begin{bmatrix}
-        1 & 3\\
-        2 & 3\\
-        4 & 1\\
+        1 & 1 & 2\\
+        2 & 1 & 3\\
+        3 & 1 & 4\\
+        4 & 1 & 5\\
+    \end{bmatrix} \in \mathbb{R}^{4 \times 3}
+$$
+这种方程数量超过未知数数量的情况称为“**超定**”（*over-determined*）系统。超定系统在大多数情况下是没有精确解的。从感性认识的角度考虑，如果我们通过正定系统获得一个精确解后，再额外添加一个或多个方程，则增添方程必须满足**某些特定条件**才能使得等式依旧成立，接下来我们将从 $\pmb{b}$ 入手，深入研究 $\pmb{A} \pmb{x}^T = \pmb{b}^T$ 有解的条件。
+$$
+    \begin{bmatrix}
+        1 & 1 & 2\\
+        2 & 1 & 3\\
+        3 & 1 & 4\\
+        4 & 1 & 5\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1\\ x_2\\ x_3\\
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        b_1\\ b_2\\ b_3\\
     \end{bmatrix}
 $$
-$\pmb{A}$ 的各列都属于 $\mathbb{R}^3$，因此 $\pmb{A}$ 列向量的全体线性组合可以构成一个 $\mathbb{R}^3$ 的线性子空间，称为 $\pmb{A}$ 的**列空间**，记为 $\pmb{C}(\pmb{A})$。从欧氏几何的角度来看，$\pmb{C}(\pmb{A})$ 是一个过原点的平面（列向量不共线），$\pmb{A}$ 的两个列向量位于平面上。
+显然 $\pmb{x} = \pmb{b} = \pmb{0}$ 对于任意数值、任意维度的系数矩阵 $\pmb{A}$ 都成立，$\pmb{0}$ 通常称为“**零解**”或“**平凡解**”。除此之外，结合矩阵的列视图，我们还能很快地举出一些其它例子：
+$$
+    \begin{bmatrix}
+        b_1\\ b_2\\ b_3\\
+    \end{bmatrix} = x_1 
+    \begin{bmatrix}
+        1\\ 2\\ 3\\ 4\\
+    \end{bmatrix} + x_2 
+    \begin{bmatrix}
+        1\\ 1\\ 1\\ 1\\
+    \end{bmatrix} + x_3 
+    \begin{bmatrix}
+        2\\ 3\\ 4\\ 5\\
+    \end{bmatrix}
+$$
+以上这个拆解形式很容易让人联想到矩阵的列空间 $\pmb{C} (\pmb{A})$，因此有以下结论：当且仅当 $\pmb{b} \in \pmb{C} (\pmb{A})$ 时，方程组 $\pmb{A} \pmb{x}^T = \pmb{b}^T$ 确定有解。
+
+说完了列空间，我们再来谈谈零空间。还是以 $\pmb{A}$ 为例，满足 $\pmb{A}\pmb{x}^T=\pmb{0}$ 的全体 $\pmb{x}$ 构成的空间 $\pmb{N}(\pmb{A})$ 称为 $\pmb{A}$ 的零空间。注意区分，对于 $\pmb{A} \pmb{x}^T = \pmb{b}^T$，$\pmb{C} (\pmb{A})$ 关心的是 $\pmb{b}$，而 $\pmb{N}(\pmb{A})$ 关心的是 $\pmb{x}$；对于 $\pmb{A} \in \mathbb{R}^{m \times n}$，$\pmb{C} (\pmb{A}) \in \mathbb{R}^m$ 而 $\pmb{N} (\pmb{A}) \in \mathbb{R}^n$。
+$$
+    \begin{bmatrix}
+        1 & 1 & 2\\
+        2 & 1 & 3\\
+        3 & 1 & 4\\
+        4 & 1 & 5\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1\\ x_2\\ x_3\\
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        0\\ 0\\ 0\\
+    \end{bmatrix}
+$$
+显然，$\pmb{0}$ 再一次满足 $\pmb{N}(\pmb{A})$ 的要求。事实上 $[1,1,-1]^T$ 的所有线性组合都满足要求。可见此时 $\pmb{N}(\pmb{A})$ 表现为 $\mathbb{R}^3$ 中的一条直线。
+
+需要指出，当 $\pmb{b} \ne \pmb{0}$ 时，同样可能存在很多 $\pmb{x}$ 使得方程等式平衡。但是这些 $\pmb{x}$ 无法构成线性向量空间。很简单，因为其中一定没有零元 $\pmb{0}$。所以当我们站在线性方程组的角度上回顾子空间的概念时应当明确：
+
+（1）根据一个给出的矩阵 $\pmb{X} \in \mathbb{R}^{m \times n}$，可以从中构建两种线性空间：列空间 $\pmb{C}(\pmb{X}) \in \mathbb{R}^m$ 与零空间 $\pmb{N}(\pmb{X}) \in \mathbb{R}^n$，而不论哪种空间都必须满足“**零元存在**”；
+
+（2）列空间的构建方法是对已有列向量进行线性组合，零空间的构建方法是在矩阵基础上寻找满足条件的解集。二者都是非常重要的子空间构建方法。
