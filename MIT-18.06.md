@@ -249,60 +249,64 @@ $$
 $$
 上述过程太抽象？想想矩阵的**行视图**、矩阵乘法的**行型**：
 $$
-    \begin{bmatrix}
-        1 & 0\\ -2 & 1\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        x_{11} & x_{12}\\
-        x_{21} & x_{22}\\
-    \end{bmatrix} = 
-    \underbrace{
+    \begin{align}
+        \notag
+        \begin{bmatrix}
+            1 & 0\\ -2 & 1\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_{11} & x_{12}\\
+            x_{21} & x_{22}\\
+        \end{bmatrix} &= 
+        \underbrace{
+            \begin{bmatrix}
+                1 & 0\\
+            \end{bmatrix}
+            \begin{bmatrix}
+                x_{11} & x_{12}\\
+                x_{21} & x_{22}\\
+            \end{bmatrix}}_{1st \ row \ of \ \pmb{Y}} \oplus 
+        \underbrace{
+            \begin{bmatrix}
+                -2 & 1\\
+            \end{bmatrix}
+            \begin{bmatrix}
+                x_{11} & x_{12}\\
+                x_{21} & x_{22}\\
+            \end{bmatrix}}_{2nd \ row \ of \ \pmb{Y}}\\
+        \notag
+        \ \\
+        \notag
         \begin{bmatrix}
             1 & 0\\
         \end{bmatrix}
         \begin{bmatrix}
             x_{11} & x_{12}\\
             x_{21} & x_{22}\\
-        \end{bmatrix}}_{1st \ row \ of \ \pmb{Y}} \oplus 
-    \underbrace{
-        \begin{bmatrix}
-            -2 & 1\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            x_{11} & x_{12}\\
-            x_{21} & x_{22}\\
-        \end{bmatrix}}_{2nd \ row \ of \ \pmb{Y}}
-$$
-$$
-    \begin{cases}
-        \begin{bmatrix}
-            1 & 0\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            x_{11} & x_{12}\\
-            x_{21} & x_{22}\\
-        \end{bmatrix} = 1 \times
+        \end{bmatrix} &= 1 \times
         \begin{bmatrix}
             x_{11} & x_{12}\\
         \end{bmatrix} + 0 \times
         \begin{bmatrix}
             x_{21} & x_{22}\\
         \end{bmatrix}\\
-        \\
+        \notag
+        \ \\
+        \notag
         \begin{bmatrix}
             -2 & 1\\
         \end{bmatrix}
         \begin{bmatrix}
             x_{11} & x_{12}\\
             x_{21} & x_{22}\\
-        \end{bmatrix} = -2 \times
+        \end{bmatrix} &= -2 \times
         \begin{bmatrix}
             x_{11} & x_{12}\\
         \end{bmatrix} + 1 \times
         \begin{bmatrix}
             x_{21} & x_{22}\\
-        \end{bmatrix}\\
-    \end{cases}
+        \end{bmatrix}
+    \end{align}
 $$
 对应地，单次初等列变换等价于 $\pmb{X}$ 右乘一个操作矩阵 $\pmb{C}$，例如矩阵**第一列除以 2**、**第二列乘 3 以后加上第一列变换后的 5 倍**：
 $$
@@ -310,7 +314,7 @@ $$
         \dfrac{x_{11}}{2} & 3x_{12}+\dfrac{5 x_{11}}{2}\\
         \\
         \dfrac{x_{21}}{2} & 3x_{22}+\dfrac{5 x_{21}}{2}\\
-    \end{bmatrix} \Leftrightarrow
+    \end{bmatrix} \ \Longleftrightarrow \
     \underbrace{
         \begin{bmatrix}
             x_{11} & x_{12}\\ x_{21} & x_{22}\\
@@ -653,9 +657,9 @@ $$
         2\\ 3\\ 4\\ 5\\
     \end{bmatrix}
 $$
-以上这个拆解形式很容易让人联想到矩阵的列空间 $C(\pmb{A})$，因此有以下结论：当且仅当 $\pmb{b} \in C(\pmb{A})$ 时，方程组 $\pmb{A} \pmb{x} = \pmb{b}$ 确定有解。
+以上这个拆解形式很容易让人联想到矩阵的列空间 $\pmb{C}(\pmb{A})$，因此有以下结论：当且仅当 $\pmb{b} \in \pmb{C}(\pmb{A})$ 时，方程组 $\pmb{A} \pmb{x} = \pmb{b}$ 确定有解。
 
-说完了列空间，我们再来谈谈零空间。还是以 $\pmb{A}$ 为例，满足 $\pmb{A}\pmb{x}=\pmb{0}$ 的全体 $\pmb{x}$ 构成的空间 $N(\pmb{A})$ 称为 $\pmb{A}$ 的零空间。注意区分，对于 $\pmb{A} \pmb{x} = \pmb{b}$，$C(\pmb{A})$ 关心的是 $\pmb{b}$，而 $N(\pmb{A})$ 关心的是 $\pmb{x}$；对于 $\pmb{A} \in \mathbb{R}^{m \times n}$，$C(\pmb{A}) \in \mathbb{R}^m$ 而 $N(\pmb{A}) \in \mathbb{R}^n$。
+说完了列空间，我们再来谈谈零空间。还是以 $\pmb{A}$ 为例，满足 $\pmb{A}\pmb{x}=\pmb{0}$ 的全体 $\pmb{x}$ 构成的空间 $\pmb{N}(\pmb{A})$ 称为 $\pmb{A}$ 的零空间。注意区分，对于 $\pmb{A} \pmb{x} = \pmb{b}$，$\pmb{C}(\pmb{A})$ 关心的是 $\pmb{b}$，而 $\pmb{N}(\pmb{A})$ 关心的是 $\pmb{x}$；对于 $\pmb{A} \in \mathbb{R}^{m \times n}$，$\pmb{C}(\pmb{A}) \in \mathbb{R}^m$ 而 $\pmb{N}(\pmb{A}) \in \mathbb{R}^n$。
 $$
     \begin{bmatrix}
         1 & 1 & 2\\
@@ -670,7 +674,7 @@ $$
         0\\ 0\\ 0\\
     \end{bmatrix}
 $$
-显然，$\pmb{0}$ 再一次满足 $N(\pmb{A})$ 的要求。事实上 $[1,1,-1]^T$ 的所有线性组合都满足要求。可见此时 $N(\pmb{A})$ 表现为 $\mathbb{R}^3$ 中的一条直线。
+显然，$\pmb{0}$ 再一次满足 $\pmb{N}(\pmb{A})$ 的要求。事实上 $[1,1,-1]^T$ 的所有线性组合都满足要求。可见此时 $\pmb{N}(\pmb{A})$ 表现为 $\mathbb{R}^3$ 中的一条直线。
 
 需要指出，当 $\pmb{b} \ne \pmb{0}$ 时，同样可能存在很多 $\pmb{x}$ 使得方程等式平衡。但是这些 $\pmb{x}$ 无法构成线性向量空间。很简单，因为其中一定没有零元 $\pmb{0}$。所以当我们站在线性方程组的角度上回顾子空间的概念时应当明确：
 
@@ -739,7 +743,7 @@ $$
         0 & 0 & 0 & 0\\
     \end{bmatrix}
 $$
-首先需要指出，$\pmb{Ax}=\pmb{0}$、$\pmb{Ux}=\pmb{0}$ 以及 $\pmb{Rx}=\pmb{0}$ 这三个方程的解是相同的，因此初等行变换并不会导致线性方程组的解产生变化。其次，通过上述三者获取解的难度显然是逐次降低的。最后，为了说明行简化矩阵求解的优越性，请注意观察 $\pmb{R}$ 以及 $\pmb{x}_1$、$\pmb{x}_2$，是否发现其中的元素高度相似？自由变量位置分别为 0 或 1，而主元位置是自由变量系数的相反数？
+首先需要指出，$\pmb{Ax}=\pmb{0}$、$\pmb{Ux}=\pmb{0}$ 以及 $\pmb{Rx}=\pmb{0}$ 这三个方程的解是相同的，因此初等行变换并不会导致线性方程组的解产生变化。换句话说，$\pmb{A}$、$\pmb{U}$ 以及 $\pmb{R}$ 的零空间是相同的。其次，通过上述三者获取解的难度显然是逐次降低的。最后，为了说明行简化矩阵求解的优越性，请注意观察 $\pmb{R}$ 以及 $\pmb{x}_1$、$\pmb{x}_2$，是否发现其中的元素高度相似？自由变量位置分别为 0 或 1，而主元位置是自由变量系数的相反数？
 
 这个“奇技淫巧”的原理如下：一个理想状态下的 $\pmb{R}_i^{m \times n}$ 可以表示为分块矩阵，其中 $\pmb{I}$ 表示主元矩阵（单位阵），$\pmb{F}$ 表示自由变量矩阵：
 $$
@@ -806,7 +810,7 @@ $$
 
 ### 3.4 The Complete Solution to $\pmb{Ax}$=$\pmb{b}$
 #### 3.4.1 可解性与解的结构
-先前我们讨论了线性方程组 $\pmb{Ax}=\pmb{b}$ 有解的条件，即 $\pmb{b} \in C(\pmb{A})$，之后以 $\pmb{Ax}=\pmb{0}$ 为例讲解了**齐次线性方程组**的解法。现在来看看非齐次方程组的求解流程。例如：
+先前我们讨论了线性方程组 $\pmb{Ax}=\pmb{b}$ 有解的条件，即 $\pmb{b} \in \pmb{C}(\pmb{A})$，之后以 $\pmb{Ax}=\pmb{0}$ 为例讲解了**齐次线性方程组**的解法。现在来看看非齐次方程组的求解流程。例如：
 $$
     \pmb{A} = 
     \begin{bmatrix}
@@ -820,34 +824,39 @@ $$
 $$
 （1）通过 LU 分解化简增广系数矩阵 $\tilde{\pmb{A}}$：
 $$
-    \pmb{E}_{to2} \pmb{E}_{to1} \pmb{A} = 
-    \begin{bmatrix}
-        1 & 0 & 0\\
-        0 & 1 & 0\\
-        0 & -1 & 0\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        1 & 0 & 0\\
-        -2 & 1 & 0\\
-        -3 & 0 & 1\\
-    \end{bmatrix} \pmb{A} = 
-    \begin{bmatrix}
-        1 & 2 & 2 & 2\\
-        0 & 0 & 2 & 4\\
-        0 & 0 & 0 & 0\\
-    \end{bmatrix} = \pmb{U}\\
-    \ \\
-    \tilde{\pmb{A}} = 
-    \begin{bmatrix}
-        1 & 0 & 0\\
-        2 & 1 & 0\\
-        3 & 1 & 1\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        1 & 2 & 2 & 2 \ | \ 1\\
-        0 & 0 & 2 & 4 \ | \ 3\\
-        0 & 0 & 0 & 0 \ | \ 0\\
-    \end{bmatrix}
+    \begin{align}
+        \notag
+        \pmb{E}_{to2} \pmb{E}_{to1} \pmb{A} &= 
+        \begin{bmatrix}
+            1 & 0 & 0\\
+            0 & 1 & 0\\
+            0 & -1 & 0\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0\\
+            -2 & 1 & 0\\
+            -3 & 0 & 1\\
+        \end{bmatrix} \pmb{A} = 
+        \begin{bmatrix}
+            1 & 2 & 2 & 2\\
+            0 & 0 & 2 & 4\\
+            0 & 0 & 0 & 0\\
+        \end{bmatrix} = \pmb{U}\\
+        \notag
+        \ \\
+        \notag
+        \tilde{\pmb{A}} &= 
+        \begin{bmatrix}
+            1 & 0 & 0\\
+            2 & 1 & 0\\
+            3 & 1 & 1\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 2 & 2 & 2 \ | \ 1\\
+            0 & 0 & 2 & 4 \ | \ 3\\
+            0 & 0 & 0 & 0 \ | \ 0\\
+        \end{bmatrix}
+    \end{align}
 $$
 （2）将所有自由变量（本例中为 $x_2$、$x_4$）设为 0，求出特解 $\pmb{x}_p$：
 $$
@@ -859,7 +868,7 @@ $$
         -2\\ 0\\ 1.5\\ 0\\
     \end{bmatrix}
 $$
-（3）求出 $\pmb{A}$ 的零空间 $N(\pmb{A})$ 作为通解 $\pmb{x}_n$：
+（3）求出 $\pmb{A}$ 的零空间 $\pmb{N}(\pmb{A})$ 作为通解 $\pmb{x}_n$：
 $$
     \pmb{Ax}=\pmb{0} \ \Longrightarrow \ \pmb{Ux}=\pmb{0} \ \Longrightarrow \ \pmb{Rx}=\pmb{0}, \ \pmb{R} = 
     \begin{bmatrix}
@@ -893,15 +902,194 @@ $$
     \pmb{A}(\pmb{x}_p+\pmb{x}_n) = \pmb{b} + \pmb{0} = \pmb{b}
     \tag{3-4-1}
 $$
-在本例中，全解表现为 $\mathbb{R}^4$ 空间中的一个二维平面，注意它并非子空间。我们可以说 $N(\pmb{A})$ 是 $\mathbb{R}^4$ 的一个子空间，它在欧式几何上表现为过零元的一个平面。而 $\pmb{x}$ 是一个经过特解点 $\pmb{x}_p$ 的平面，相当于将 $N(\pmb{A})$ 进行平移后的结果。因为这个空间内没有零元，所以它不是子空间。
+在本例中，全解表现为 $\mathbb{R}^4$ 空间中的一个二维平面，注意它并非子空间。我们可以说 $\pmb{N}(\pmb{A})$ 是 $\mathbb{R}^4$ 的一个子空间，它在欧式几何上表现为过零元的一个平面。而 $\pmb{x}$ 是一个经过特解点 $\pmb{x}_p$ 的平面，相当于将 $\pmb{N}(\pmb{A})$ 进行平移后的结果。因为这个空间内没有零元，所以它不是子空间。
 
 #### 3.4.2 矩阵秩次对于解的影响
 我们知道对于一个系数矩阵 $\pmb{A} \in \mathbb{R}^{m \times n}$，其秩次数 $r(\pmb{A})$ 可决定矩阵不满秩、行满秩或列满秩。这三种情况分别对应了线性方程组 $\pmb{Ax}=\pmb{b}$ 的不同解情况。
 
-首先是列满秩（$r(\pmb{A}) = n$）：结合 3.3.2 节末尾的结论，此时不存在自由变量，$N(\pmb{M})$ 仅有 $\pmb{0}$ 一个向量，即不存在通解 $\pmb{x}_n$。线性方程组 $\pmb{Ax}=\pmb{b}$ 只有 1 个特解 $\pmb{x}_p$ 或无解（$\pmb{b} \notin C(\pmb{A})$）;
+首先是列满秩（$r(\pmb{A}) = n$）：结合 3.3.2 节末尾的结论，此时不存在自由变量，$N(\pmb{M})$ 仅有 $\pmb{0}$ 一个向量，即不存在通解 $\pmb{x}_n$。线性方程组 $\pmb{Ax}=\pmb{b}$ 只有 1 个特解 $\pmb{x}_p$ 或无解（$\pmb{b} \notin \pmb{C}(\pmb{A})$）;
 
 其次是行满秩（$r(\pmb{A}) = m$）：行满秩时行简化矩阵没有全零行。与列满秩不同，此时方程组的可解性对于 $\pmb{b}$ **没有任何要求**（不论超定或正定）。自由变量有 $n-m$ 个，即通解 $\pmb{x}_n$ 由 $n-m$ 项组成，全解要么只有 1 个（特解，$m=n$），要么有无数个（特解 + 通解）；
 
-这里有必要强调一种特殊情况：满秩（$r(\pmb{A}) = m = n$）。此时方程组的系数矩阵是一个可逆的方阵，其行简化矩阵为单位阵。由于它是列满秩，因此 $N(\pmb{A})$ 依然只有 $\pmb{0}$。而它又是行满秩，故 $\pmb{Ax}=\pmb{b}$ 必有解，且解为 $\pmb{A}^{-1} \pmb{b}$；
+这里有必要强调一种特殊情况：满秩（$r(\pmb{A}) = m = n$）。此时方程组的系数矩阵是一个可逆的方阵，其行简化矩阵为单位阵。由于它是列满秩，因此 $\pmb{N}(\pmb{A})$ 依然只有 $\pmb{0}$。而它又是行满秩，故 $\pmb{Ax}=\pmb{b}$ 必有解，且解为 $\pmb{A}^{-1} \pmb{b}$；
 
-最后谈谈不满秩的情况（$r(\pmb{A}) < m, \ r(\pmb{A}) < n$）：此时行简化矩阵有全零行（当且仅当 $\pmb{b}\in C(\pmb{A})$ 时有解），也有自由变量（通解有无数个）。即要么无解，要么有无数个解。
+最后谈谈不满秩的情况（$r(\pmb{A}) < m, \ r(\pmb{A}) < n$）：此时行简化矩阵有全零行（当且仅当 $\pmb{b}\in \pmb{C}(\pmb{A})$ 时有解），也有自由变量（通解有无数个）。即要么无解，要么有无数个解。
+
+### 3.5 Independence, Basis and Dimension
+对于欠定线性方程组的系数矩阵 $\pmb{A} \in \mathbb{R}^{m \times n}$（$m<n$），根据上一节的相关内容我们知道，$\pmb{A}$ 至多可达行满秩，而不可能列满秩，必然存在至少 $n-m$ 个自由变量，所以 $\pmb{N}(\pmb{A})$ 中的元素不止 $\pmb{0}$ 一个，即 $\pmb{Ax}=\pmb{0}$ 包含非零解。上述分析过程其实对应于矩阵列向量组的一个特性：相关性。
+
+#### 3.5.1 线性相关性
+向量组线性相关性的定义可以从多个方面进行阐释，注意以下的各种说法本质上都是一样的。对于前言中的矩阵 $\pmb{A}$，当满足以下条件之一时，其列向量组**线性相关**：
+
+（1）其列向量可通过某个非零的线性组合构成零向量；
+
+（2）$\pmb{Ax}=\pmb{0}$ 存在非零解；
+
+（3）零空间 $\pmb{N}(\pmb{A})$ 内除了零元 $\pmb{0}$ 还有其它元素。
+
+反之，若上述条件之一不满足，则称向量组**线性无关**。
+
+#### 3.5.2 生成空间 & 基 & 维数
+类似于列空间，我们可以在广义层面上定义一个由向量组 $\{\pmb{v}_1,\pmb{v}_2,\cdots,\pmb{v}_n\}$ 张成（生成）的空间 $\pmb{S}$：
+$$
+    \forall \ k_i \in \mathbb{R}, \ \ \sum_{i=1}^{n} {k_i \pmb{v}_i} \in \pmb{S}
+    \tag{3-5-1}
+$$
+对于一个生成空间，其内部自然由无数个向量构成。这些向量可能是相关的，也可能是无关的。我们关心的问题常常是：能否找到一组个数最少的向量，从而足以构成整个空间。换句话说，我们总是希望能够寻找到空间的一组**基**来描述整个空间的某些特性。基向量一般需满足以下特点：
+
+（1）彼此线性无关。例如对于空间 $\pmb{R}^n$，假设有 $n$ 个向量构成一组基，则向量组合成的 $n$ 阶方阵是可逆矩阵；
+
+（2）可生成完整的目标空间
+
+（3）基向量的数目应当与空间维数（即向量元素个数）一致。
+
+空间维数这个概念与矩阵的秩也存在关联：矩阵 $\pmb{A}$ 的秩（$r$）等于主元列的个数，等于列空间 $\pmb{C}(\pmb{A})$ 的维数；$\pmb{A}$ 自由变量的个数（$n-r$）等于零空间 $\pmb{N}(\pmb{A})$ 的维数。
+
+不难发现，秩是矩阵的概念，维数是空间的概念，而两者在某种程度上是相互连通的。事实上，矩阵只是空间的一种表现形式而已。
+
+#### 3.5.3 矩阵空间、函数空间的基
+独立性、基和维数的概念不仅限于向量，从泛函分析的角度，它们还能拓展至矩阵空间、函数空间等各种空间。例如一个包含全体二阶方阵的矩阵空间 $\pmb{M}$，它的基 $\{\pmb{A}_1, \pmb{A}_2, \pmb{A}_3, \pmb{A}_4\}$ 以及生成空间 $span\{\pmb{A}\}$ 分别为：
+$$
+    \begin{align}
+        \notag \pmb{A}_1, \pmb{A}_2, \pmb{A}_3, \pmb{A}_4 &= 
+        \begin{bmatrix}
+            1 & 0\\
+            0 & 0\\
+        \end{bmatrix},
+        \begin{bmatrix}
+            0 & 1\\
+            0 & 0\\
+        \end{bmatrix},
+        \begin{bmatrix}
+            0 & 0\\
+            1 & 0\\
+        \end{bmatrix},
+        \begin{bmatrix}
+            0 & 0\\
+            0 & 1\\
+        \end{bmatrix}\\
+        \notag \ \\
+        \notag span\{\pmb{A}\} &= \sum_{i=1}^4 {k_i \pmb{A}_i} = 
+        \begin{bmatrix}
+            c_1 & c_2\\
+            c_3 & c_4\\
+        \end{bmatrix}
+    \end{align}
+$$
+此时，我们考虑的对象不再是单个维度的向量，而是二阶方阵。其中每一个元素的“0/1”状态都是彼此独立的，因此空间 $\pmb{M}$ 的维数为 4，与矩阵元素个数相同。更一般地，$\mathbb{R}^{n \times n}$ 的矩阵空间 $\pmb{M}$ 的维数为 $n^2$。
+
+注意到 $\pmb{A}_1$、$\pmb{A}_2$ 以及 $\pmb{A}_4$ 都是上三角矩阵空间 $\pmb{U}$（$\pmb{M}$ 的子空间）的基，在 $\mathbb{R}^{2 \times 2}$ 矩阵空间中，$\pmb{U}$ 的维数显然为 3。进一步地，在 $\mathbb{R}^{n \times n}$ 矩阵空间中，$\pmb{U}$ 的维数与矩阵中可变状态的元素个数相等，即：
+$$
+    \begin{bmatrix}
+        m_{0,0} & m_{0,1} & \cdots & m_{0,n-1}\\
+        0 & m_{1,1} & \cdots & m_{1,n-1}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \cdots & m_{n-1,n-1}
+    \end{bmatrix} \ \Longrightarrow \ \dfrac{1}{2} (n^2-n) + n = \dfrac{1}{2} n^2 + \dfrac{1}{2} n
+$$
+类似地，我们可以推导出其它子空间的维数，例如 $n$ 阶对角阵空间 $\pmb{D}$ 的维数为 $n$、$n$ 阶对称阵 $\pmb{S}$ 的维数为 $\dfrac{1}{2}n^2+\dfrac{1}{2}n$ 等等。
+
+类似向量空间、矩阵空间，函数空间指一群具有特定结构，或满足特殊功能的函数集合。我们来看三个微分特征方程以及它们的解集：
+$$
+    \begin{align}
+        \notag \dfrac{d^2y}{dx^2} &= 0 \ \Longrightarrow \ y = c x + d\\
+        \notag \ \\
+        \notag \dfrac{d^2y}{dx^2} &= -y \ \Longrightarrow \ y = c sinx + d cosx\\
+        \notag \ \\
+        \notag \dfrac{d^2y}{dx^2} &= y \ \Longrightarrow \ y = c e^x + d e^{-x}
+    \end{align}
+$$
+对于第一个微分方程，它的解空间有两个基：$x$ 与 1，它们是二阶导数的“零空间”。以此类推，第二个微分方程解空间的基为 $sinx$ 与 $cosx$，第三个为 $e^x$ 与 $e^{-x}$。这些空间的基不再是向量或者矩阵，而是函数，因而得名“函数空间”。需要注意的是，并非所有微分方程的解都能构成函数空间，正如并非所有向量（矩阵）能够成对应空间一样。例如非齐次微分方程 $y''=2$，其特解为 $y=x^2$，通解为对应齐次微分方程的解 $y=cx+d$，全解为 $y=x^2+cx+d$，显然这些函数簇并不满足线性可加性（二次项的系数固定为 1），因此它们无法构成线性子空间。
+
+最后需要提到的一个向量空间是只含有零向量的空间 $\pmb{Z}$。数学上定义该空间的维数为 0，基是空集 $\varnothing$，并不是零向量。**零向量永远无法成为某个线性空间的基**，因为在定义上它是**任意方向**的，因此与任何一个非零元基的方向都重合。
+
+### 3.6 Dimensions of the Four Subspaces
+#### 3.6.1 四种基本子空间的定义
+对于一个矩阵 $\pmb{A} \in \mathbb{R}^{m \times n}$，我们可以从中构建四种基本子空间：
+
+（1）列空间：$\pmb{C}(\pmb{A})$，$\mathbb{R}^m$ 的子空间；
+
+（2）行空间：$\pmb{C}\left(\pmb{A}^T\right)$，$\mathbb{R}^n$ 的子空间；
+
+（3）零空间：$\pmb{N}(\pmb{A})$，$\mathbb{R}^n$ 的子空间；
+
+（4）左零空间：$\pmb{N}\left(\pmb{A}^T\right)$，$\mathbb{R}^m$ 的子空间。
+
+#### 3.6.2 子空间的基与维数
+（1）对于列空间 $\pmb{C}(\pmb{A})$，根据先前章节的知识，我们知道维数 $dim \left[\pmb{C}(\pmb{A})\right]=rank(\pmb{A})=r$，基即为各主元所在列。
+
+（2）对于同一矩阵的行空间 $\pmb{C}\left(\pmb{A}^T\right)$，其维数不变：$dim \left[\pmb{C}\left(\pmb{A}^T\right)\right]=rank(\pmb{A}^T)=rank(\pmb{A})$，基为 $\pmb{A}^T$ 的各主元所在列。
+
+（3）对于零空间 $\pmb{N}(\pmb{A})$，基为 $\pmb{Ax}=\pmb{0}$ 的特解，因此基的个数为 $\pmb{A}$ 的自由变量个数 $n-r$，即维数为 $n-r$。这里需注意，$\pmb{N}(\pmb{A})$ 的维数加上 $\pmb{C}(\pmb{A})$ 的维数等于 $\pmb{A}$ 的列数 $n$。
+
+（4）最后是左零空间 $\pmb{N}\left(\pmb{A}^T\right)$，类似 $\pmb{N}(\pmb{A})$ 我们知道，$\pmb{N}\left(\pmb{A}^T\right)$ 的维数应当是 $m-r$，基为 $\pmb{A}^T \pmb{x}=\pmb{0}$ 的特解。
+
+#### 3.6.3 求解子空间的基
+在现有阶段，初等行变换（LU 分解）始终是我们分析矩阵性质的重要技术手段。
+
+（1）对于列空间 $\pmb{C}(\pmb{A})$，我们可以将其转置后进行初等行变换化简为行简化矩阵，通过转置的行空间间接获得原矩阵的列空间。
+
+（2）对于行空间 $\pmb{C}\left(\pmb{A}^T\right)$，我们需要在行向量中寻找独立的向量组。对 $\pmb{A}$ 进行初等行变换得到行简化矩阵 $\pmb{R}$，主元所在行即为 $\pmb{C}\left(\pmb{A}^T\right)$ 的基。一般来说，$\pmb{C}(\pmb{R}) \ne \pmb{C}(\pmb{A})$，但是 $\pmb{A}$ 与 $\pmb{R}$ 的行空间是相同的。因为初等行变换的过程本质上就是一种线性组合，因此对 $\pmb{R}$ 进行逆向变换（线性组合）可以完全恢复至 $\pmb{A}$。
+
+（3）对于零空间 $\pmb{N}(\pmb{A})$，根据已有知识，我们通常对 $\pmb{A}$ 进行初等行变换（或 LU 分解）获得行简化矩阵 $\pmb{R}$，以此来确定主元所在列、自由变量以及特解（基）。
+
+（4）对于左零空间 $\pmb{N}\left(\pmb{A}^T\right)$，根据定义有 $\pmb{A}^T \pmb{y} = \pmb{0}$，即 $\pmb{y}^T \pmb{A} = \pmb{0}$，这个结果很像我推导空间滤波器的形式。这里我们还是先用列向量形式。以如下所示的矩阵 $\pmb{A}$ 为例：
+$$
+    \pmb{A} = 
+    \begin{bmatrix}
+        1 & 2 & 3 & 1\\
+        1 & 1 & 2 & 1\\
+        1 & 2 & 3 & 1\\
+    \end{bmatrix}
+$$
+通过 *Guass-Jordan* 消元法，可以同步获取行简化矩阵 $\pmb{R}$ 与左乘操作矩阵 $\pmb{E}$（当矩阵为方阵时，$\pmb{E} = {\pmb{A}}^{-1}$）：
+$$
+    \pmb{E}_{m \times m} 
+    \begin{bmatrix}
+        \pmb{A}_{m \times n} & I_{m \times m}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \pmb{R}_{m \times n} & E_{m \times m}
+    \end{bmatrix}\\
+    \ \\
+    \begin{align}
+        \notag \begin{bmatrix}
+            1 & 2 & 0\\
+            0 & -1 & 0\\
+            0 & 0 & 1\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0\\
+            -1 & 1 & 0\\
+            -1 & 0 & 1\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 2 & 3 & 1\\
+            1 & 1 & 2 & 1\\
+            1 & 2 & 3 & 1\\
+        \end{bmatrix} &= 
+        \begin{bmatrix}
+            1 & 0 & 1 & 1\\
+            0 & 1 & 1 & 0\\
+            0 & 0 & 0 & 0\\
+        \end{bmatrix}\\
+        \notag \ \\
+        \notag \begin{bmatrix}
+            -1 & 2 & 0\\
+            1 & -1 & 0\\
+            -1 & 0 & 1\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 2 & 3 & 1\\
+            1 & 1 & 2 & 1\\
+            1 & 2 & 3 & 1\\
+        \end{bmatrix} &= 
+        \begin{bmatrix}
+            1 & 0 & 1 & 1\\
+            0 & 1 & 1 & 0\\
+            0 & 0 & 0 & 0\\
+        \end{bmatrix}
+    \end{align}
+$$
+在本例中，事实上我们已经找到了一个 $\pmb{N}\left(\pmb{A}^T\right)$ 的基，即行向量 $\pmb{E}(-1,:)$。需要明确的概念是，$\pmb{N}(\pmb{A})$ 寻找的是使得 $\pmb{A}$ 各列组合为 $\pmb{0}$ 的向量，而 $\pmb{N}\left(\pmb{A}^T\right)$ 寻找的是使得 $\pmb{A}$ 各行组合为 $\pmb{0}$ 的向量，即对应于 $\pmb{E}$。当然我们不太可能总是从 $\pmb{E}$ 中能够直接找到答案，因此将原矩阵转置后求解零空间依然不失为一种合理且靠谱的手段。
+
