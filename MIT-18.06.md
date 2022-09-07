@@ -1093,3 +1093,311 @@ $$
 $$
 在本例中，事实上我们已经找到了一个 $\pmb{N}\left(\pmb{A}^T\right)$ 的基，即行向量 $\pmb{E}(-1,:)$。需要明确的概念是，$\pmb{N}(\pmb{A})$ 寻找的是使得 $\pmb{A}$ 各列组合为 $\pmb{0}$ 的向量，而 $\pmb{N}\left(\pmb{A}^T\right)$ 寻找的是使得 $\pmb{A}$ 各行组合为 $\pmb{0}$ 的向量，即对应于 $\pmb{E}$。当然我们不太可能总是从 $\pmb{E}$ 中能够直接找到答案，因此将原矩阵转置后求解零空间依然不失为一种合理且靠谱的手段。
 
+### 3.7 Matrix Spaces & Rank One Matrices
+#### 3.7.1 矩阵空间的基
+以一个三阶方阵空间 $\pmb{M} \in \mathbb{R}^{3 \times 3}$（9 维）为例，上三角矩阵空间 $\pmb{U}$（6 维）、对称矩阵空间 $\pmb{S}$（6 维）都是 $\pmb{M}$ 的子空间。显然 $\pmb{U}$ 的基是 $\pmb{M}$ 的基的一部分，但 $\pmb{S}$ 并非如此。通常对于子空间，我们需要重新寻找它的基。
+
+在此之前，我们先来回顾一下如何在已有空间的基础上构建子空间。以对角阵空间 $\pmb{D}$（3 维）为例：
+$$
+    \pmb{D} = \pmb{S} \cap \pmb{U}
+    \tag{3-7-1}
+$$
+（子）空间的交集一般仍是子空间，然而（子）空间的并集往往不再是线性空间。从广义的空间角度来看，子空间是原始空间的一个“切片”（例如 3 维空间中过零点的平面），子空间的交集是“切片”的“切片”（例如两个相交平面的过零点交线），因此它能够保留形成空间所需的特性；子空间的并集是两个“切片”的**简单加和**，例如 3 维空间中的两条相交直线，这个空间还有大量空白的部分需要“填补”才能形成一个**完备**的线性空间。
+
+除了交集以外，**空间加和**也是一种简单直观的线性空间构建方法：
+$$
+    \pmb{S} + \pmb{U} = \{k_1 \pmb{s} + k_2 \pmb{u}\}, \ \forall \ k_1,k_2 \in \mathbb{R}
+    \tag{3-7-2}
+$$
+注意 $\pmb{S} + \pmb{U}$ 的范围（9 维）已经达到了 $\pmb{M}$，即它包含了任意 3 阶方阵。一般地：
+$$
+    dim(\pmb{S}) + dim(\pmb{U}) = dim(\pmb{S} \cap \pmb{U}) + dim(\pmb{S} + \pmb{U})
+    \tag{3-7-3}
+$$
+
+#### 3.7.2 秩 1 矩阵
+以 $\pmb{A}$ 为例：
+$$
+    \pmb{A} = 
+    \begin{bmatrix}
+        1 & 4 & 5\\
+        2 & 8 & 10\\
+    \end{bmatrix} = \underbrace{
+        \begin{bmatrix}
+            1\\ 2
+        \end{bmatrix}}_{\pmb{u}} \underbrace{
+            \begin{bmatrix}
+                1 & 4 & 5\\
+            \end{bmatrix}}_{\pmb{v}^T}
+$$
+这是一个典型的秩 1 矩阵，即 $dim\left(\pmb{C}(\pmb{A})\right) = rank\left(\pmb{A}\right) = dim\left(\pmb{C}\left(\pmb{A}^T\right)\right) = 1$。任意一个秩 1 矩阵 $\pmb{A}$ 都能表示为列向量与行向量的乘积 $\pmb{u}\pmb{v}^T$。类似乐高积木，秩 1 矩阵可视为其它矩阵的基本构成单位：一个秩为 $r$ 的矩阵可由 $r$ 个秩 1 矩阵线性组合而成。也正因此，秩 1 矩阵集合并不是一个子空间，因为它不满足可加性。
+
+接下来是另外一个案例，在 $\mathbb{R}^4$ 中，对于一个长度为 4 的列向量 $\pmb{v}$，寻找使得各分量之和为 0 的所有向量构成的集合 $\pmb{S}$：
+$$
+    \pmb{v} = 
+    \begin{bmatrix}
+        v_1\\ v_2\\ v_3\\ v_4\\
+    \end{bmatrix}, \ \pmb{S} = \{\pmb{v} | \sum_{i=1}^4{v_i}=0\}
+$$
+$\pmb{S}$ 是 $\mathbb{R}^4$ 的一个线性子空间。尽管它由四维向量组成，但是它的维度是 3。后者似乎不如前者那么明显，我们可以从零空间的角度来看 $\pmb{S}$：
+$$
+    \pmb{S}=\pmb{N}(\pmb{A}), \ \pmb{A}=
+    \begin{bmatrix}
+        1 & 1 & 1 & 1\\
+    \end{bmatrix} \ \Longrightarrow \ \pmb{Av}=\pmb{0}
+$$
+$\pmb{A}$ 是一个秩 1 矩阵，自由变量个数为 3，因此 $\pmb{N}(\pmb{A})$（即 $\pmb{S}$）是 3 维空间，它的基为：
+$$
+    \pmb{s}_1 = 
+    \begin{bmatrix}
+        -1\\ 1\\ 0\\ 0\\
+    \end{bmatrix}, \ \pmb{s}_2 = 
+    \begin{bmatrix}
+        -1\\ 0\\ 1\\ 0\\
+    \end{bmatrix}, \ \pmb{s}_3 = 
+    \begin{bmatrix}
+        -1\\ 0\\ 0\\ 1\\
+    \end{bmatrix}
+$$
+同理我们可以得知，$\pmb{C}(\pmb{A})$ 的维度是 1，$\pmb{C}\left(\pmb{A}^T\right)$ 的维度是 1，$\pmb{N}\left(\pmb{A}^T\right)$ 的维度是 0。结合 3.6.2 的知识不难发现以下规律：
+$$
+    \forall \ \pmb{A} \in \mathbb{R}^{m \times n}, \ 
+    \begin{cases}
+        dim\left[\pmb{C}(\pmb{A})\right] + dim\left[\pmb{N}(\pmb{A})\right] = n\\
+        \ \\
+        dim\left[\pmb{C}\left(\pmb{A}^T\right)\right] + dim\left[\pmb{N}\left(\pmb{A}^T\right)\right] = m\\
+    \end{cases}
+    \tag{3-7-4}
+$$
+
+### 3.8 Graphs & Networks
+#### 3.8.1 图与矩阵
+首先需要简单介绍一下“图”的概念：图是“边”与“结点”的集合，“边”连通各个“结点”。我们可以用一个关联矩阵（*Incidence matrix*） $\pmb{A}$ 来描述图：
+$$
+    Graph = \{edges (m),\ nodes(n)\} \ \Longrightarrow \ \pmb{A} \in \mathbb{R}^{m \times n}
+    \tag{3-8-1}
+$$
+以下图所示的有向网络为例，接下来的各种分析都将基于类似的有向图展开。该网络由 4 个结点、5 条边构成：
+
+![图网络示意图](/figures/Graph-1.jpg)
+
+关联矩阵的每一行表示一条边，每一列代表各个结点在不同边上的流动情况，流起点的值为 -1，流终点的值为 1。若该结点不在对应边上，则数值为 0。据此可以得出图示网络的关联矩阵 $\pmb{A} \in \mathbb{R}^{5 \times 4}$：
+$$
+    \pmb{A} = 
+    \begin{bmatrix}
+        -1 & 1 & 0 & 0\\
+        0 & -1 & 1 & 0\\
+        -1 & 0 & 1 & 0\\
+        -1 & 0 & 0 & 1\\
+        0 & 0 & -1 & 1\\
+    \end{bmatrix}
+$$
+此图存在两个回路（内部无回路的最小结构），观察对应的关联矩阵：
+$$
+    \pmb{A}_{123} = 
+    \begin{bmatrix}
+        -1 & 1 & 0 & 0\\
+        0 & -1 & 1 & 0\\
+        -1 & 0 & 1 & 0\\
+    \end{bmatrix}, \ \pmb{A}_{345} = 
+    \begin{bmatrix}
+        -1 & 0 & 1 & 0\\
+        -1 & 0 & 0 & 1\\
+        0 & 0 & -1 & 1\\
+    \end{bmatrix}
+$$
+不难发现，**回路关联矩阵的行向量组（边）是线性相关的**，而且线性组合的方式与信息流向是完全一致的。例如回路 $\pmb{A}_{123}$，信息从结点 1 经过 结点 2 流向结点 3，另一条通路是直接从结点 1 至结点 3。按照向量的视角，应有 $\pmb{v}_{12} + \pmb{v}_{23} = \pmb{v}_{13}$，对应地 $\pmb{A}_{123}(0,:) + \pmb{A}_{123}(1,:) = \pmb{A}_{123}(2,:)$；同理在回路 $\pmb{A}_{345}$ 中，有 $\pmb{A}_{345}(0,:) + \pmb{A}_{345}(1,:) = \pmb{A}_{345}(2,:)$。相应地，如果图中没有回路，这种图称为“树”，**树的各行是线性无关的**。
+
+接下来我们假设该图是一个电路网络，以此来窥探应用数学的一斑。结合 3.6 的知识，我们将通过子空间分析关联矩阵的特征对应于现实场景的物理意义。
+
+#### 3.8.2 电路网络分析：零空间
+首先是零空间 $\pmb{N}\left(\pmb{A}\right)$，对应线性方程组为：
+$$
+    \pmb{Ax} = \pmb{0} \ \Longrightarrow \ 
+    \begin{cases}
+        x_2 - x_1 = 0\\
+        x_3 - x_2 = 0\\
+        x_3 - x_1 = 0\\
+        x_4 - x_1 = 0\\
+        x_4 - x_3 = 0\\
+    \end{cases}
+$$
+其中 $\{x_1,x_2,x_3,x_4\}$ 在电路中表示**结点电势**，$\pmb{Ax}$ 表示各边上的**电势差**。由于该图是一个无源电路，因此电势差应当为 $\pmb{0}$。落实到具体方程的解，显然全零电势（$x_1=x_2=x_3=x_4=0$）与全等电势（$x_1=x_2=x_3=x_4=1$）均属于 $\pmb{N}\left(\pmb{A}\right)$，更进一步地：
+$$
+    \pmb{x} = k 
+    \begin{bmatrix}
+        1\\ 1\\ 1\\ 1\\
+    \end{bmatrix}, \ k \in \mathbb{R}
+$$
+即有 $dim\left[\pmb{N}\left(\pmb{A}\right)\right]=1$，根据（3-7-4）可知，$rank(\pmb{A})=n-1=3$。事实上，$\forall \ \pmb{A} \in \mathbb{R}^{m \times n}$，均有 $dim\left[\pmb{N}\left(\pmb{A}\right)\right]=1$，$rank(\pmb{A})=n-1$。这一结论很好证明，对于有向图 $\pmb{A}$ 中的一条有向线段 $\vec{l}$（排序为 $l$），其两端端点分别为 $I$、$J$（排序为 $i$、$j$）：
+
+（1）求解零空间的过程中有方程 $\pmb{A}(l,i)-\pmb{A}(l,j)=0$，等电势条件 $\pmb{A}(l,i)=\pmb{A}(l,j)=1$ 显然满足要求。而图中的任意线段都可以表示为类似形式，因此全等电势必然是 $\pmb{Ax}=\pmb{0}$ 的特解，即 $\pmb{N}\left(\pmb{A}\right)$ 的一个基；
+
+（2）$\pmb{A}$ 的每一行都代表一条边，相应的方程对应一组等（零）电势解。图网络由边连接而成，各结点之间均存在关联，差别仅在于距离远近，即不存在孤立结点。因此也不可能出现部分结点电势为 0，而另一部分结点电势为 1 的情况。
+
+综上可知，$\pmb{N}\left(\pmb{A}\right)$ 的基有且仅有全等电势一个，因此关联矩阵零空间的维度始终为 1，即；**关联矩阵的秩始终等于图中点数减一**。
+
+上述分析面向的对象都是无源电路。当问题延申至有源（电压源）场景时，电势差 $\pmb{Ax}$ 依然有其用武之地。我们只需构建一个描述了各边电源分布及正负极向信息的电压源矩阵 $\pmb{e}$，并将系数矩阵 $\pmb{0}$ 改为 $\pmb{e}$ 即可。形如 $\pmb{e}=\pmb{Ax}$ 的问题对应的电路基本定理为**基尔霍夫电压定律**（*Kirchoff's Voltage Law, KVL*），即“**任何一个闭合回路中，各元件上的电压降的代数和等于电动势的代数和**”。
+
+#### 3.8.3 电路网络分析：左零空间
+接下来是左零空间 $\pmb{N}\left(\pmb{A}^T\right)$，对应的线性方程组为：
+$$
+    \begin{align}
+        \notag
+        \pmb{A}^T &= 
+        \begin{bmatrix}
+            -1 & 0 & -1 & -1 & 0\\
+            1 & -1 & 0 & 0 & 0\\
+            0 & 1 & 1 & 0 & -1\\
+            0 & 0 & 0 & 1 & 1\\
+        \end{bmatrix}\\
+        \notag \ \\
+        \notag
+        \pmb{A}^T\pmb{y} &= \pmb{0} \ \Longrightarrow \ 
+        \begin{cases}
+            -y_1 - y_3 - y_4 = 0\\
+            y_1 - y_2 = 0\\
+            y_2 + y_3 - y_5 = 0\\
+            y_4 + y_5 = 0\\
+        \end{cases}
+    \end{align}
+$$
+既然 $\pmb{Ax}$ 中的 $\pmb{x}$ 表示**电势**，那么 $\pmb{A}^T\pmb{y}$ 中的 $\pmb{y}$ 呢？当然是与它不离不弃的**电流**了。由于结点上不会积累电荷，因此 $\pmb{A}^T\pmb{y}=\pmb{0}$ 描述的物理现象是：“**电路中任何一个结点上，任意时刻流入结点的电流之和等于流出结点的电流之和**”，这就是**基尔霍夫电流定律**（*Kirchoff's Current Law, KCL*）。
+
+我们来看方程组的全解：
+$$
+    \pmb{y} = k_1
+    \begin{bmatrix}
+        1\\ 1\\ -1\\ 0\\ 0\\
+    \end{bmatrix} + k_2
+    \begin{bmatrix}
+        0\\ 0\\ 1\\ -1\\ 1\\
+    \end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
+$$
+根据物理知识可知，电流可以仅存在于某个回路中，而不经过其它回路（例如短路），因此左零空间基向量的物理意义是**回路电流的分布情况**，且仅包含小回路。结合图示可知，小回路有 $\pmb{A}_{123}$、$\pmb{A}_{345}$ 两个，对应边为 $\{1,2,3\}$ 和 $\{3,4,5\}$，根据 *KCL* 定律可以轻松获得如上所示的两个基向量。换句话说，**关联矩阵左零空间的维度等于小回路个数**。当然，根据已有的线代知识，我们也应该知道 $dim\left[\pmb{N}\left(\pmb{A}^T\right)\right]=m-r=2$。
+
+我们来看看大回路有什么“问题”。本例中的大回路即为 $\pmb{A}_{1254}$，对应的解向量为：
+$$
+    \pmb{y}_{1254} = 
+    \begin{bmatrix}
+        1\\ 1\\ 0\\ -1\\ 1\\
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        1\\ 1\\ -1\\ 0\\ 0\\
+    \end{bmatrix} + 
+    \begin{bmatrix}
+        0\\ 0\\ 1\\ -1\\ 1\\
+    \end{bmatrix} = \pmb{y}_{123} + \pmb{y}_{345}
+$$
+由上可见 $\pmb{y}_{1254}$ 无法作为 $\pmb{N}\left(\pmb{A}^T\right)$ 的基。因此在图网络分析中，我们只关注内部没有回路的最小回路，大回路对应的解向量通常可由内含的小回路线性组合而成。
+
+同 3.8.2，$\pmb{A}^T\pmb{y}$ 在有源（电流源）场景中也有应用。我们只需构建一个描述各边电流分布及流向信息的电流源矩阵 $\pmb{f}$，并将系数矩阵 $\pmb{0}$ 改为 $\pmb{f}$，即 $\pmb{A}^T\pmb{y} = \pmb{f}$。
+
+#### 3.8.4 欧拉公式与欧姆定律
+结合前两节的分析可知：
+$$
+    \underbrace{dim\left[\pmb{N}(\pmb{A}^T)\right]}_{loops} = \underbrace{m}_{edges} - \underbrace{r}_{nodes-1} \ \Longrightarrow \
+    nodes - edges + loops = 1
+    \tag{3-8-2}
+$$
+这一结论其实是**欧拉定理**（*Euler's formula*）在**二维平面**上的表现。空间拓扑学中的欧拉定理内容是：“**在任何一个规则球面上，区域个数记作 $R$，顶点个数记作 $V$，边界个数记作 $E$，则有 $R+V-E=2$**”。当三维空间降维至二维平面时，$z$ 轴信息消失，大回路失去了独立构成区域的能力，相当于总区域数 $R$ 减少了一个，因此有 $R+V-E=1$，即（3-8-2）。
+
+至此，我们已经得到了描述电势、电流的两个电学基本公式 $\pmb{e}=\pmb{Ax}$、$\pmb{A}^T\pmb{y}=\pmb{f}$。根据我残存的电学知识（~~对不住了我的各位物理老师~~），**欧姆定律**是连接它们的桥梁：$\pmb{y}=\pmb{Ce}$，其中 $\pmb{C}$ 表示各边上的电导（电阻的倒数）。最后，让我们用一个平衡等式来结束短暂的应用数学之旅，它完整地描述了一个稳态电路在各结点、各边上的电学信息：
+$$
+    \pmb{A}^T\pmb{CAx}=\pmb{f}
+    \tag{3-8-3}
+$$
+最后的最后，还需要再提醒几点：
+
+（1）形如（3-8-3）的方程不仅适用于电路分析，在很多场景中都能见到。至少在我目前研究的多通道电生理信号分析中是抬头不见低头见了。当我们赋予 $\pmb{A}$、$\pmb{C}$、$\pmb{x}$ 以及 $\pmb{f}$ 不同的物理意义时，它描述的问题自然也会随之改变；
+
+（2）形如 $\pmb{A}^T\pmb{CA}$ 或 $\pmb{A}^T\pmb{A}$ 的矩阵往往具有一些独特的魅力（比如对称），持续不断地吸引着研究者们埋头深耕。这些矩阵我们在下一章以及 MIT-18.065 课程中会进一步详细探讨。
+
+## 4 Orthogonality
+### 4.1 Orthogonality of the Four Subspaces
+#### 4.1.1 正交向量
+在大多数情况下，“正交”是“垂直”的另一种说法。在 $\mathbb{R}^n$ 空间中，两个列向量 $\pmb{x}$、$\pmb{y}$ 正交意味着：
+$$
+    \pmb{x}^T \pmb{y} = 0 \ or \ \left< \pmb{y}, \pmb{x} \right> = 0
+    \tag{4-1-1}
+$$
+这一点可以在二维空间中通过**勾股定理**加以验证。对于 $\mathbb{R}^2$ 中由向量 $\pmb{x}$、$\pmb{y}$ 以及 $\pmb{x}+\pmb{y}$ 围成的**直角三角形**，勾股定理告诉我们：
+$$
+    \|\pmb{x}\|^2 + \|\pmb{y}\|^2 = \|\pmb{x}+\pmb{y}\|^2
+    \tag{4-1-2}
+$$
+对于向量而言，“长度”的概念可以从几何的角度理解：例如 $\pmb{x}=[x_1,x_2,\cdots,x_n]^T$，从空间原点到坐标点 $(x_1,x_2,\cdots,x_n)$ 的距离为 $\sqrt{x_1^2+x_2^2+\cdots+x_n^2}$，即：
+$$
+    \|\pmb{x}\|^2 = \pmb{x}^T \pmb{x}
+    \tag{4-1-3}
+$$
+在目前的知识体系下，这样表示是没有问题的。当然等以后我们接触了矩阵范数的概念时，会对（4-1-3）有一个更为严谨的理解。把上述结果代回（4-1-2）可得：
+$$
+        \pmb{x}^T \pmb{x} + \pmb{y}^T \pmb{y} = (\pmb{x}+\pmb{y})^T(\pmb{x}+\pmb{y}) \ \Longrightarrow \ \pmb{y}^T \pmb{x} + \pmb{x}^T \pmb{y} = 0\\
+        \ \\
+        \because \ \pmb{y}^T \pmb{x}=\left(\pmb{x}^T \pmb{y}\right)^T \in \mathbb{R}\\
+        \ \\
+        \therefore \ \pmb{y}^T \pmb{x}=\pmb{x}^T \pmb{y} \ \Longrightarrow \ \pmb{x}^T \pmb{y} = 0
+$$
+
+#### 4.1.2 正交子空间
+下图展示了四种子空间的基本信息以及相互关系：
+
+![子空间关系图](/figures/4ss.png)
+
+这张图还描述了两组正交关系，在说明它们之前，我们有必要先了解一下空间正交的含义，对于两个 $n$ 维子空间 $\pmb{S}$、$\pmb{T}$，当我们说“**子空间 $\pmb{S}$、$\pmb{T}$ 二者正交**”时，其含义为：
+$$
+    \pmb{S} \perp \pmb{T} \ \Longrightarrow \ \forall \ \pmb{s} \in \pmb{S}, \pmb{t} \in \pmb{T}, \ \pmb{s}^T \pmb{t} \ or \ \pmb{t}^T \pmb{s} = 0
+    \tag{4-1-4}
+$$
+向量空间的“正交”与我们在欧式几何中谈论的“垂直”并不完全一致。譬如三维笛卡尔坐标系中的 $xOy$ 平面与 $yOz$ 平面。这两个平面在立体几何的概念里是**垂直**的；在线代领域里，它们都是 $\mathbb{R}^3$ 的子空间。然而根据（4-1-4）的定义，两者并不**正交**。很显然位于 $y$ 轴上的向量同时属于两个平面，却相互平行而非垂直。需要注意的是，问题的根源并不是二者有交集，而是它们的交集包含了非零元素。换个例子，我们知道 $x$ 轴和 $y$ 轴是垂直且正交的，二者的唯一交集就是零元（原点）。更一般地，**如果子空间 $\pmb{S}$ 与 $\pmb{T}$ 存在非零元的交集，则二者必不可能正交**。
+
+接下来我们说明图中的正交关系。首先是行空间与零空间，二者不仅正交，还将母空间 $\mathbb{R}^n$ 划分成了两个**互补**空间，即：
+$$
+    \pmb{C}\left(\pmb{A}^T\right), \pmb{N}\left(\pmb{A}\right) \subseteq \mathbb{R}^n, \ \pmb{C}\left(\pmb{A}^T\right)=\pmb{N}\left(\pmb{A}\right)^{\perp}
+    \tag{4-1-5}
+$$
+我们先从零空间入手，看看它们正交的原因。对于线性方程组 $\pmb{Ax}=\pmb{0}$ ：
+$$
+    \begin{bmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n}\\
+        a_{21} & a_{22} & \cdots & a_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{m1} & a_{m2} & \cdots & a_{mn}\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1\\ x_2\\ \vdots\\ x_n\\
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        0\\ 0\\ \vdots\\ 0\\
+    \end{bmatrix} \ \Longrightarrow \
+    \begin{cases}
+        \pmb{a}_1^T \pmb{x} = 0\\
+        \pmb{a}_2^T \pmb{x} = 0\\
+        \vdots\\
+        \pmb{a}_n^T \pmb{x} = 0\\
+    \end{cases}
+$$
+其中 $\pmb{a}_i^T$ 表示 $\pmb{A}$ 中的第 $i$ 行向量。这个方程组说明零空间中的**任意向量** $\pmb{x}$ 都与 $\pmb{A}$ 的**每个行向量**正交，进而满足（4-1-4）提出的定义，即有 $\pmb{C}\left(\pmb{A}^T\right) \perp \pmb{N}\left(\pmb{A}\right)$。至于正交补，是因为零空间与列空间的维度之和为母空间维度，且二者的交集只包含零元。举例来说，对于 $\mathbb{R}^3$ 中的直线簇 $\pmb{L}$：
+$$
+    \pmb{L} = 
+    \begin{bmatrix}
+        1 & 2 & 5\\
+        2 & 4 & 10\\
+    \end{bmatrix}
+$$
+$\pmb{C}(\pmb{L}^T)$ 表示经过原点与 $(1,2,5)$ 的直线，$dim\left[\pmb{C}(\pmb{L}^T)\right]=rank(\pmb{L}^T)=1$，$dim\left[\pmb{N}(\pmb{L})\right]=2$。更具体地：
+$$
+    \pmb{N}(\pmb{L}) = k_1 
+    \begin{bmatrix}
+        -2\\ 1\\ 0\\
+    \end{bmatrix} + k_2
+    \begin{bmatrix}
+        -5\\ 0\\ 1\\
+    \end{bmatrix} = k_1 \pmb{x}_1 + k_2 \pmb{x_2}, \ k_1,k_2 \in \mathbb{R}
+$$
+可见 $\pmb{N}(\pmb{L})$ 的几何表现为一个平面。根据立体几何的相关知识，$\pmb{x}_1$ 与 $\pmb{x}_2$ 是平面 $\pmb{N}(\pmb{L})$ 上的非共线向量。而方向向量 $[1,2,5]^T$ 经计算验证可知与 $\pmb{x}_1$、$\pmb{x}_2$ 均垂直，因此 $\pmb{C}(\pmb{L}^T) \perp \pmb{N}(\pmb{L})$。更进一步地，$\pmb{C}(\pmb{L}^T)$ 与 $\pmb{N}(\pmb{L})$ 相交于原点，二者空间相加 $\pmb{C}(\pmb{L}^T) + \pmb{N}(\pmb{L})$ 的几何含义是：以 $\pmb{C}(\pmb{L}^T)$ 为中心轴，平移平面 $\pmb{N}(\pmb{L})$ 所形成的立体空间。根据（3.7.1）的结论，相加空间依然是线性子空间。显然这个子空间与 $\pmb{R}^3$ 是等价的，即 $\pmb{C}(\pmb{L}^T)$ 是 $\pmb{N}(\pmb{L})$ 的正交补，反之亦然。
+
+以上分析过程同样适用于 $\pmb{C}(\pmb{A})$ 与 $\pmb{N}\left(\pmb{A}^T\right)$，即 $\pmb{C}(\pmb{A}) = \pmb{N}\left(\pmb{A}^T\right)^{\perp}$，证明过程在此不再赘述。
+
+### 4.2 Projections
