@@ -1,195 +1,161 @@
-### 5. Determinants
-当我学习线代时，这一部分的内容在同济版线代课本中是第一节（天津大学自用的课本也一样），试想一下对于一个纯新手而言，开场白如同天书一般难以消化，往后的日子大概率也是遍布阴霾。而在 MIT-18.06 这里，行列式被安排在了第五章。此时我们已经对矩阵的初等变换、LU 分解、可逆性等诸多性质都有了充分的感性与理性理解，关于行列式的各种性质推导也都变得顺理成章。
-
-我相信作为教师，国内高校老师的水平与国外没有显著差别，甚至本土老师更了解国情与学生的个性，本应提供质量更高的课堂。然而受限于违反教育规律的各种教材，最终质量往往不如人意，这一现象值得每一位教育从业者以及有意向投身教育事业的人反思。
-
-#### 5.1 The Properties of Determinants
-方阵的行列式是一个简单的数字，但是这个数字包含了非常丰富的矩阵信息。其中最基本、最重要的信息是 $det (\pmb{A}) = 0$，则矩阵奇异，即不可逆；反之 $det (\pmb{A}) \ne 0$，则矩阵非奇异、可逆。对于二阶方阵而言，行列式的具体计算公式为：
+## 5.3 Cramer's Rule, Inverse and Volumes
+### 5.3.1 逆矩阵公式
+在接触行列式的概念之后，我们终于可以获得一个通用的矩阵求逆公式（尽管这个公式操作起来未必就比 LU 分解或者行变换简单），首先以二阶方阵为例：
 $$
-    \pmb{A} = 
+    \pmb{A}^{-1} = 
     \begin{bmatrix}
         a & b\\ c & d\\
-    \end{bmatrix}, \ \det (\pmb{A}) = 
-    \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix} = ad - bc
-    \tag{5-1-1}
+    \end{bmatrix}^{-1} = \dfrac{1}{ad-bc}
+    \begin{bmatrix}
+        d & -b\\ -c & a\\
+    \end{bmatrix} = \dfrac{1}{\det(\pmb{A})}
+    \begin{bmatrix}
+        C_{1,1} & C_{1,2}\\ C_{2,1} & C_{2,2}
+    \end{bmatrix}^T
 $$
-
-
-在此基础上，我们接下来依次介绍行列式的十条基本性质。
-
-**（1）单位阵的行列式为 1**：
+推广到 $\pmb{A} \in \mathbb{R}^{n \times n}$：
 $$
-    \det (\pmb{I}) = 1
-    \tag{5-1-2}
-$$
-**（2）每进行一次行交换，行列式变号一次**。关于这一条的延申是：任何置换矩阵的行列式不是 1 就是 -1，符号取决于它由单位阵经过了多少次行变换得来。
-
-**（3-A）矩阵单行乘上常系数，其行列式的值也乘上相同系数**：
-$$
-    \begin{vmatrix}
-        ta & tb\\ c & d\\
-    \end{vmatrix} = t
-    \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix}
-    \tag{5-1-3}
-$$
-**（3-B）矩阵单行对应的线性组合同样存在于行列式中**：
-$$
-    \begin{vmatrix}
-        a+a_0 & b+b_0\\ c & d\\
-    \end{vmatrix} = 
-    \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix} + 
-    \begin{vmatrix}
-        a_0 & b_0\\ c & d\\
-    \end{vmatrix}
-    \tag{5-1-4}
-$$
-前三条性质是基础中的基础，根据它们以及一些学过的矩阵知识（无需（5-1-1））即可以推导出剩下的七条性质！
-
-**（4）矩阵中存在相同行时，行列式为 0**：
-$$
-    \begin{vmatrix}
-        a & b\\ a & b\\
-    \end{vmatrix} = 0
-    \tag{5-1-5}
-$$
-这一条性质可由（2）证明，交换两相同行不会改变矩阵的任何元素，所以行列式应当相等；而进行了一次行交换意味着行列式应当变号。唯一能同时满足以上两个条件的情况即行列式为 0。
-
-**（5）线性组合矩阵中的行向量不会改变矩阵的行列式**：
-$$
-    \begin{vmatrix}
-        a & b\\ c+ka & d+kb
-    \end{vmatrix} = 
-    \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix}
-    \tag{5-1-6}
-$$
-这一条可由（3）（4）联合证明：
-$$
-    \begin{vmatrix}
-        a & b\\ c+ka & d+kb
-    \end{vmatrix} = \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix} + k
-    \underbrace{
-        \begin{vmatrix}
-            a & b\\ a & b\\
-        \end{vmatrix}}_0 = 
-    \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix}
-$$
-**（6）矩阵存在全零行时，行列式为 0**：
-$$
-    \begin{vmatrix}
-        a & b\\ 0 & 0\\
-    \end{vmatrix} = 0
-    \tag{5-1-7}
-$$
-这一条可以通过（3-B）证明：
-$$
-    \begin{vmatrix}
-        a & b\\ 0 & 0\\
-    \end{vmatrix} = 
-    \begin{vmatrix}
-        a & b\\ 0 & 0\\
-    \end{vmatrix} + 
-    \begin{vmatrix}
-        a & b\\ 0 & 0\\
-    \end{vmatrix} \ \Longrightarrow \ 
-    \begin{vmatrix}
-        a & b\\ 0 & 0\\
-    \end{vmatrix} = 0
-$$
-**（7）三角矩阵（或对角阵）的行列式为主元乘积**：
-$$
-    \begin{align}
-        \notag \pmb{A} &= \pmb{LU} \in \mathbb{R}^{n \times n}, \ \det(\pmb{U}) = \prod_{i=1}^n \pmb{U}(i,i)\\
-        \notag \ \\
-        \notag \pmb{D} &= diag(d_1,d_2,\cdots,d_n) \in \mathbb{R}^{n \times n}, \ \det(\pmb{D}) = \prod_{i=1}^n d_i
-    \end{align}
-    \tag{5-1-8}
-$$
-首先需要明确，经过 LU 分解得到的上三角矩阵 $\pmb{U}$ 可以进一步行变换得到对角阵 $\pmb{D}$。接下来对 $det(\pmb{D})$ 反复应用（3-A）提取每一行的系数：
-$$
-    \det(\pmb{D}) = d_1
-    \begin{vmatrix}
-        1 & 0 & \cdots & 0\\
-        0 & d_2 & \cdots & 0\\
+    \pmb{A}^{-1} = \dfrac{1}{\det(\pmb{A})}\pmb{C}^T, \ \pmb{C} = 
+    \begin{bmatrix}
+        C_{1,1} & C_{1,2} & \cdots & C_{1,n}\\
+        C_{2,1} & C_{2,2} & \cdots & C_{2,n}\\
         \vdots & \vdots & \ddots & \vdots\\
-        0 & 0 & \cdots & d_n
-    \end{vmatrix} = \cdots = 
-    (d_1 d_2 \cdots d_n) \times \det(\pmb{I}_n) = \prod_{i=1}^n d_i
+        C_{n,1} & C_{n,2} & \cdots & C_{n,n}\\
+    \end{bmatrix}
+    \tag{5-3-1}
 $$
-**（8）$det(\pmb{A})=0$ 则 $\pmb{A}$ 是奇异矩阵，反之 $det(\pmb{A}) \ne 0$ 则 $\pmb{A}$ 可逆**。由于后半句与前半句严格对立，因此我们着重证明前半句：
-
-$\Leftarrow$：奇异矩阵通过行变换能化简出全零行，所以行列式为 0；
-
-$\Rightarrow$：以二阶方阵行列式为例：
+接下来证明（5-3-1），即证明：
 $$
-    \det(\pmb{A}) = 
-    \begin{vmatrix}
-        a & b\\ c & d\\
-    \end{vmatrix} = ad-bc = 0
+    \pmb{A}\pmb{C}^T = \det(\pmb{A}) \pmb{I}
 $$
-假设 $abcd \ne 0$（若其中存在某元素为 0，则必存在全零行或全零列），现证明 $\pmb{A}$ 的两行向量存在线性关系：
 $$
-    ad = \left(a \times \dfrac{b}{a} \right) \times \left(d \times \dfrac{a}{b} \right) = b \times \dfrac{ad}{b} = bc
-$$
-因为四个元素均不为零，则必有 $\dfrac{ad}{b}=c$，即有：
-$$
-    \pmb{A} = 
+    \underbrace{
+        \begin{bmatrix}
+            a_{1,1} & a_{1,2} & \cdots & a_{1,n}\\
+            a_{2,1} & a_{2,2} & \cdots & a_{2,n}\\
+            \vdots & \vdots & \ddots & \vdots\\
+            a_{n,1} & a_{n,2} & \cdots & a_{n,n}\\
+        \end{bmatrix}}_{\pmb{A}}
+    \underbrace{
+        \begin{bmatrix}
+            C_{1,1} & C_{2,1} & \cdots & C_{n,1}\\
+            C_{1,2} & C_{2,2} & \cdots & C_{n,2}\\
+            \vdots & \vdots & \ddots & \vdots\\
+            C_{1,n} & C_{2,n} & \cdots & C_{n,n}\\
+        \end{bmatrix}}_{\pmb{C}^T} = 
     \begin{bmatrix}
-        a & b\\
-        c & d\\
-    \end{bmatrix} = 
-    \begin{bmatrix}
-        a & b\\
-        a \times \dfrac{d}{b} & b \times \dfrac{d}{b}\\
+        \det{\pmb{A}} & & & \\
+        & \det{\pmb{A}} & & \\
+        & & \ddots & \\
+        & & & \det{\pmb{A}}\\
     \end{bmatrix}
 $$
-即行列式为零的二阶方阵中，行向量组存在线性关系，由此可以推断出矩阵奇异。
+我们先观察等式右边矩阵的第一个元素来源 $a_{1,1}C_{1,1} + a_{1,2}C_{1,2} + \cdots + a_{1,n}C_{1,n}$，不难发现这就是 $\det(\pmb{A})$ 的计算公式，同理右矩阵主对角线上的其它元素分别对应于依照 $\pmb{A}$ 的**不同行**展开的行列式计算公式。现在仅剩的问题是，矩阵其它部分都是 0 吗？换句话说，当展开行与余子式对应行不匹配时，矩阵元素与代数余子式的乘积是否为 0？即是否有：
+$$
+    a_{i,1}C_{j,1} + a_{i,2}C_{j,2} + \cdots + a_{i,n}C_{j,n} = \sum_{k=1,i \ne j}^{n} a_{i,k}C_{j,k} = 0
+    \tag{5-3-2}
+$$
+当然我都给编号了，所以它是成立的。想直接证明这个等式是非常困难的，但是（5-3-2）的形式与行列式计算很相似，因此我们通过构造特殊矩阵的方式加以说明。
 
-**（9）矩阵乘积的行列式等于行列式的乘积**：
-$$
-    \det(\pmb{AB}) = \det(\pmb{A}) \times \det(\pmb{B})
-    \tag{5-1-9}
-$$
-这一条可结合 LU 分解的性质来加以证明。已知在**无需行交换**的情况下，LU 分解的结果是一个下三角矩阵 $\pmb{L}$（对角线元素全为 1）以及上三角矩阵 $\pmb{U}$，因此 $\det(\pmb{L})=1$。考虑 $\pmb{A}$ 与 $\pmb{U}$ 的关系：$\pmb{U}$ 由 $\pmb{A}$ 在不经过行交换（**行列式不变号**）的情况下，仅通过行向量的线性组合（**行列式不变**）得来，因此必有 $\det(\pmb{U})=\det(\pmb{A})$，即：
-$$
-    \det(\pmb{A}) = \det(\pmb{LU}) = \underbrace{\det(\pmb{L})}_{1} \times \det(\pmb{U})
-$$
-这是无需行交换的情况。那么当需要行交换时，其本质是在 $\pmb{L}$ 的基础上新增一些置换矩阵，假设它们的乘积是 $\pmb{P}$ 且 $\det(\pmb{P}) = (-1)^n$，$n$ 表示行交换次数。考虑 $\pmb{A}$ 与 $\pmb{U}$ 的关系：$\pmb{U}$ 由 $\pmb{A}$ 经过 $n$ 次行交换（**行列式变号 $n$ 次**）、行向量线性组合（**行列式不变**）得来，因此有 $\det(\pmb{U}) \times (-1)^n = \det(\pmb{A})$，即：
-$$
-    \det(\pmb{A}) = \det\left(\pmb{P}^{-1}\pmb{LU}\right) = \underbrace{\dfrac{1}{\det(\pmb{P})}}_{(-1)^n} \times \underbrace{\det(\pmb{L})}_{1} \times \det(\pmb{U})
-$$
-综上所述，不论是否需要行交换，我们始终可以通过 LU 分解证明性质（9）的成立。
-
-**（10）矩阵转置后行列式不变**：
-$$
-    \det\left(\pmb{A}^T\right) = \det(\pmb{A})
-    \tag{5-1-10}
-$$
-在（9）的基础上，最后一条其实很好证明了。假设有 $\pmb{A} = \pmb{P}^{-1}\pmb{LU} \in \mathbb{R}^{n \times n}$，则 $\pmb{A}^T = \pmb{U}^T \pmb{L}^T \pmb{P}$（置换矩阵的转置即为其逆矩阵），故有：
+我们具体一点，取 $i=1$，$j=n$ 的情况进行分析，即第一行展开，但是用的是最后一行各元素对应的代数余子式。我们设想这样一种矩阵 $\pmb{X}$：第一行与最后一行相等。显然 $\pmb{X}$ 是奇异矩阵，即 $\det(\pmb{X})=0$。我们分别按第一行和最后一行展开行列式：
 $$
     \begin{align}
-        \notag \det(\pmb{A}) &= \det\left(\pmb{P}^T\right) \times \det(\pmb{L}) \times \det(\pmb{U})\\
-        \notag \ \\
-        \notag \det\left(\pmb{A}^T \right) &= \det\left(\pmb{U}^T \right) \times \det\left(\pmb{L}^T \right) \times \det(\pmb{P})
+    \notag \det(\pmb{A}) =
+    \begin{vmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n}\\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{n-1,1} & a_{n-1,2} & \cdots & a_{n-1,n}\\
+        a_{n,1} & a_{n,2} & \cdots & a_{n,n}\\
+    \end{vmatrix} &= a_{1,1}C_{1,1} - a_{1,2}C_{1,2} + \cdots + (-1)^{n+1}a_{1,n}C_{1,n} = 0\\
+    \notag \ \\
+    \notag &= a_{n,1}C_{n,1} - a_{n,2}C_{n,2} + \cdots + (-1)^{n+1}a_{n,n}C_{n,n} = 0
     \end{align}
 $$
-由于 $\pmb{L}$、$\pmb{U}$ 都是三角阵，因此它们的转置不改变行列式的值。现在唯一的问题在于 $\det\left(\pmb{P}^T\right)$ 是否等于 $\det(\pmb{P})$。
+由于 $\pmb{A}$ 的第一行与最后一行相等，因此有：
+$$
+    C_{1,1} = (-1)^m C_{n,1}, C_{1,2} = (-1)^m C_{n,2},\ \cdots, \ C_{1,n} = (-1)^m C_{n,n}, \ (-1)^m \sum_{k=n}^n a_{n,k} C_{1,k}=0
+$$
+当我们构建 $\pmb{A}$ 的第 $i$、$j$ 行相等时，对应于（5-3-2）中 $i$、$j$ 取相应值的情况。至此，我们已经得到并证明了面向一般方阵的逆矩阵求解公式。
 
-首先毫无疑问的是 $\left|\det(\pmb{P})\right|=1$，即只存在符号差别；
+### 5.3.2 Cramer 法则
+首先需要声明，*Cramer* 法则在线性方程组求解过程中并不实用，计算量大、数值不稳定等等都是它的缺点。据说在微分几何中有它的用武之地，不过这也不是我研究的方向。
 
-其次单位阵以及部分 $\pmb{P}$ 本身即为 *Hermitte* 矩阵（$\pmb{P}^T=\pmb{P}$），这类 $\pmb{P}$ 显然有 $\det\left(\pmb{P}^T\right) = \det(\pmb{P})$。需要强调一下什么时候会产生对称置换矩阵：**变更位置的行向量有且仅有一次交换**。
+在普通线代领域，*Cramer* 法则的理论价值在于方程组有解性的判断：对于方阵系数的方程组（方程个数与未知量个数相等），当系数行列式不等于 0 时，方程组具有唯一解；若系数行列式为 0，则方程组无解或有无数解。
 
-最后是部分非对称的 $\pmb{P}$，假设它们主对角线上有 $m$ 个 1（$m<n$），说明进行了 $n-m-1$ 次**不回头**的行交换（即不考虑交换以后又换回去的情况），当它转置后，偏离主对角线的元素数量不变，还是相当于进行了 $n-m-1$ 次**不回头**的行交换，所以行列式的值不会改变，同样有 $\det\left(\pmb{P}^T\right) = \det(\pmb{P})$。
+接下来给出基本说明。对于有唯一解的 $n$ 阶线性方程组 $\pmb{Ax}=\pmb{b}$，其解为 $\pmb{x}=\pmb{A}^{-1} \pmb{b} = \dfrac{1}{\det{\pmb{A}}}\pmb{C}^T \pmb{b}$。*Cramer* 法则认为方程解可以由 $n$ 个分量构成：
+$$
+    \pmb{x}_1 = \dfrac{\det(\pmb{B}_1)}{\det(\pmb{A})}, \ \pmb{x}_2 = \dfrac{\det(\pmb{B}_2)}{\det(\pmb{A})}, \ \cdots \ , \ \pmb{x}_n = \dfrac{\det(\pmb{B}_n)}{\det(\pmb{A})}
+    \tag{5-3-3}
+$$
+其中方阵 $\pmb{B}_1$、$\pmb{B}_2$、$\cdots$、$\pmb{B}_n$ 分别表示 $\pmb{A}$ 中第 $1$、$2$、$\cdots$、$n$ 列被 $\pmb{b}$ 替换后构成的方阵：
+$$
+    \pmb{B}_1 = 
+    \begin{bmatrix}
+        b_1 & a_{1,2} & \cdots & a_{1,n}\\
+        b_2 & a_{2,2} & \cdots & a_{2,n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        b_n & a_{n,2} & \cdots & a_{n,n}\\
+    \end{bmatrix}, \ \pmb{B}_2 = 
+    \begin{bmatrix}
+        a_{1,1} & b_1 & \cdots & a_{1,n}\\
+        a_{2,1} & b_2 & \cdots & a_{2,n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{n,1} & b_n & \cdots & a_{n,n}\\
+    \end{bmatrix}, \ \cdots \ \pmb{B}_n = 
+    \begin{bmatrix}
+        a_{1,1} & a_{1,2} & \cdots & b_1\\
+        a_{2,1} & a_{2,2} & \cdots & b_2\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{n,1} & a_{n,2} & \cdots & b_n\\
+    \end{bmatrix}
+$$
 
-综上可知（5-1-10）成立。
+### 5.3.3 行列式与几何
+在阶数较低的时候，方阵行列式与欧式几何之间存在紧密联系（高维的时候相关规律也许依然存在，只是没那么好理解和运用了）。以二阶（平面）为例：
+
+![三角形面积示意图](/figures/triangle.png)
+
+如果不给定坐标系，我们求三角形面积的常用办法是“底乘高除以二”。如今我们在坐标系中，手拥线代这一把利器，一切都变得不一样了。如图所示的三角形，其中一个顶点在原点上，剩余两点的坐标分别为 $(a,b)$、$(c,d)$。我们先按照纯几何的角度分析一下问题，在完善辅助线后，不难发现目标区域面积 $S$ 为矩形减去周边三个三角形的面积：
+$$
+    S_{\triangle OAB} = bc - \dfrac{1}{2}ab - \dfrac{1}{2}cd - \dfrac{1}{2}(b-d)(c-a) = \dfrac{bd-ac}{2}
+$$ 
+这个形式与二阶矩阵的行列式非常相似：
+$$
+    \pmb{A} = 
+    \begin{vmatrix}
+        a & b\\ c & d\\
+    \end{vmatrix}, \ S_{\triangle OAB} = \dfrac{1}{2} \left|\det{(\pmb{A})}\right|
+$$
+之所以要取绝对值，是因为行列式本身并不像面积一样满足非负性。数值的正负与图形的方向（或立体的手型）有关。
+
+由这个案例可以看出，线性代数和向量对于几何分析带来的巨大帮助。当三角形顶点不在原点时，以向量的角度，无非是 $\vec{OA}$、$\vec{OB}$ 的起点发生了平移，三边之间的位置关系是不变的，因此只需将对应坐标修正至以原点为顶点的情况即可继续套用公式。例如三点坐标分别为 $A(x_1,y_1)$、$B(x_2,y_2)$ 以及 $C(x_3,y_3)$ 时，将 $A$ 平移至原点：
+$$
+    \begin{align}
+        \notag
+        \begin{cases}
+            A(x_1,y_1) \rightarrow A^{'}(0,0)\\
+            B(x_2,y_2) \rightarrow B^{'}(x_2-x_1,y_2-y_1)\\
+            C(x_3,y_3) \rightarrow C^{'}(x_3-x_1,y_3-y_1)\\
+        \end{cases}, \ S_{\triangle ABC} &= \dfrac{1}{2}
+        abs\left(
+            \begin{vmatrix}
+                x_2-x_1 & y_2-y_1\\
+                x_3-x_1 & y_3-y_1\\
+            \end{vmatrix}
+        \right)\\
+        \notag &= \left|x_1(y_1-y_3) + x_2(y_3-y_1) + x_3(y_1-y_2)\right|
+    \end{align}
+    \tag{5-3-4}
+$$
+或者我们也可以用另外一个公式：
+$$
+    \pmb{S} = 
+    \begin{bmatrix}
+        x_1 & y_1 & 1\\
+        x_2 & y_2 & 1\\
+        x_3 & y_3 & 1\\
+    \end{bmatrix}, \ S_{\triangle ABC}=\dfrac{1}{2}\left|\det(\pmb{S})\right|
+    \tag{5-3-5}
+$$
+把（5-3-5）的 $\det(\pmb{S})$ 按第一列展开，结果与（5-3-4）是一样的。类似的结论可以沿用至平行四边形。因为在二维坐标系中决定一个平行四边形其实仅需要三个点即可，相应区域的面积即为三角形面积的两倍，故不再赘述。
