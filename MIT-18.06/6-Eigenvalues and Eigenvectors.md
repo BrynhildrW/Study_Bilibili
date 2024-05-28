@@ -1,9 +1,3 @@
----
-html:
-    toc: true
-print_background: true
----
-
 # 6. Eigenvalues and Eigenvectors
 终于来到了线代部分最关键的环节，特征值与特征向量。不夸张地说，特征向量在 EEG 信号分类算法设计中占据了半壁江山，在空间滤波器设计中更是尤为重要。
 
