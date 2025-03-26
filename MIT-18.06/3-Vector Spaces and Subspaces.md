@@ -1,6 +1,6 @@
 ---
 html:
-    toc: true
+toc: true
 print_background: true
 ---
 
@@ -30,9 +30,9 @@ print_background: true
 
 更一般地，对于同属某一线性空间的两个子空间 $\pmb{S}$ 与 $\pmb{T}$，$\pmb{S} \cap \pmb{T}$ 仍然是子空间，但 $\pmb{S} \cup \pmb{T}$ **通常**不满足子空间条件。简单证明一下，$\forall \ \pmb{v},\pmb{w} \in \pmb{S} \cap \pmb{T}$，均有：
 $$
-    (a\pmb{v}+b\pmb{w}) \in \pmb{S}, \ (a\pmb{v}+b\pmb{w}) \in \pmb{T}
-    \Longrightarrow \ (a\pmb{v}+b\pmb{w}) \in \pmb{S} \cap \pmb{T}, \ \forall a,b \in \mathbb{R}
-    \tag{5-2-1}
+(a\pmb{v}+b\pmb{w}) \in \pmb{S}, \ (a\pmb{v}+b\pmb{w}) \in \pmb{T}
+\Longrightarrow \ (a\pmb{v}+b\pmb{w}) \in \pmb{S} \cap \pmb{T}, \ \forall a,b \in \mathbb{R}
+\tag{5-2-1}
 $$
 除了上述抽象方法，我们当然可以从一个具体的矩阵入手来构造一系列子空间。这些内容将在下一节详细展开。
 
@@ -42,60 +42,60 @@ $$
 
 给定系数矩阵 $\pmb{A}$（这个例子将会持续存在一段时间）以及线性方程组 $\pmb{A} \pmb{x} = \pmb{b}$：
 $$
-    \pmb{A} = 
-    \begin{bmatrix}
-        1 & 1 & 2\\
-        2 & 1 & 3\\
-        3 & 1 & 4\\
-        4 & 1 & 5\\
-    \end{bmatrix} \in \mathbb{R}^{4 \times 3}
+\pmb{A} = 
+\begin{bmatrix}
+1 & 1 & 2\\
+2 & 1 & 3\\
+3 & 1 & 4\\
+4 & 1 & 5\\
+\end{bmatrix} \in \mathbb{R}^{4 \times 3}
 $$
 这种方程数量超过未知数数量的情况称为“**超定**”（*over-determined*）系统。超定系统在大多数情况下是没有精确解的。从感性认识的角度考虑，如果我们通过正定系统获得一个精确解后，再额外添加一个或多个方程，则增添方程必须满足**某些特定条件**才能使得等式依旧成立。相应地，并非所有的系数向量都能使得方程组有解。接下来我们将从 $\pmb{b}$ 入手，深入研究 $\pmb{A} \pmb{x} = \pmb{b}$ 有解的条件。
 $$
-    \begin{bmatrix}
-        1 & 1 & 2\\
-        2 & 1 & 3\\
-        3 & 1 & 4\\
-        4 & 1 & 5\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        x_1\\ x_2\\ x_3\\
-    \end{bmatrix} = 
-    \begin{bmatrix}
-        b_1\\ b_2\\ b_3\\
-    \end{bmatrix}
+\begin{bmatrix}
+1 & 1 & 2\\
+2 & 1 & 3\\
+3 & 1 & 4\\
+4 & 1 & 5\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\ x_2\\ x_3\\
+\end{bmatrix} = 
+\begin{bmatrix}
+b_1\\ b_2\\ b_3\\
+\end{bmatrix}
 $$
 显然 $\pmb{x} = \pmb{b} = \pmb{0}$ 对于任意数值、任意维度的系数矩阵 $\pmb{A}$ 都成立，$\pmb{0}$ 通常称为“**零解**”或“**平凡解**”。除此之外，结合矩阵的列视图，我们还能很快地举出一些其它例子：
 $$
-    \begin{bmatrix}
-        b_1\\ b_2\\ b_3\\
-    \end{bmatrix} = x_1 
-    \begin{bmatrix}
-        1\\ 2\\ 3\\ 4\\
-    \end{bmatrix} + x_2 
-    \begin{bmatrix}
-        1\\ 1\\ 1\\ 1\\
-    \end{bmatrix} + x_3 
-    \begin{bmatrix}
-        2\\ 3\\ 4\\ 5\\
-    \end{bmatrix}
+\begin{bmatrix}
+b_1\\ b_2\\ b_3\\
+\end{bmatrix} = x_1 
+\begin{bmatrix}
+1\\ 2\\ 3\\ 4\\
+\end{bmatrix} + x_2 
+\begin{bmatrix}
+1\\ 1\\ 1\\ 1\\
+\end{bmatrix} + x_3 
+\begin{bmatrix}
+2\\ 3\\ 4\\ 5\\
+\end{bmatrix}
 $$
 以上这个拆解形式很容易让人联想到矩阵的列空间 $\pmb{C}(\pmb{A})$，因此有以下结论：当且仅当 $\pmb{b} \in \pmb{C}(\pmb{A})$ 时，方程组 $\pmb{A} \pmb{x} = \pmb{b}$ 确定有解。
 
 说完了列空间，我们再来谈谈零空间。还是以 $\pmb{A}$ 为例，满足 $\pmb{A}\pmb{x}=\pmb{0}$ 的全体 $\pmb{x}$ 构成的空间 $\pmb{N}(\pmb{A})$ 称为 $\pmb{A}$ 的零空间。注意区分，对于 $\pmb{A} \pmb{x} = \pmb{b}$，$\pmb{C}(\pmb{A})$ 关心的是 $\pmb{b}$，而 $\pmb{N}(\pmb{A})$ 关心的是 $\pmb{x}$；对于 $\pmb{A} \in \mathbb{R}^{m \times n}$，$\pmb{C}(\pmb{A}) \in \mathbb{R}^m$ 而 $\pmb{N}(\pmb{A}) \in \mathbb{R}^n$。
 $$
-    \begin{bmatrix}
-        1 & 1 & 2\\
-        2 & 1 & 3\\
-        3 & 1 & 4\\
-        4 & 1 & 5\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        x_1\\ x_2\\ x_3\\
-    \end{bmatrix} = 
-    \begin{bmatrix}
-        0\\ 0\\ 0\\
-    \end{bmatrix}
+\begin{bmatrix}
+1 & 1 & 2\\
+2 & 1 & 3\\
+3 & 1 & 4\\
+4 & 1 & 5\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\ x_2\\ x_3\\
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\ 0\\ 0\\
+\end{bmatrix}
 $$
 显然，$\pmb{0}$ 再一次满足 $\pmb{N}(\pmb{A})$ 的要求。事实上 $[1,1,-1]^T$ 的所有线性组合都满足要求。可见此时 $\pmb{N}(\pmb{A})$ 表现为 $\mathbb{R}^3$ 中的一条直线。
 
@@ -108,30 +108,30 @@ $$
 ### 3.2.2 零空间求解算法
 以矩阵 $\pmb{A}$ 为例：
 $$
-    \pmb{A} = 
-    \begin{bmatrix}
-        1 & 2 & 2 & 2\\
-        2 & 4 & 6 & 8\\
-        3 & 6 & 8 & 10\\
-    \end{bmatrix}
+\pmb{A} = 
+\begin{bmatrix}
+1 & 2 & 2 & 2\\
+2 & 4 & 6 & 8\\
+3 & 6 & 8 & 10\\
+\end{bmatrix}
 $$
 我们来研究求解 $\pmb{A}\pmb{x}=\pmb{0}$ 的过程。由于右侧向量已经是 $\pmb{0}$ 了，是否对 $\pmb{A}$ 增广没有区别，因此我们可以直接对 $\pmb{A}$ 进行 LU 分解：
 $$
-    \begin{bmatrix}
-        1 & 2 & 2 & 2\\
-        2 & 4 & 6 & 8\\
-        3 & 6 & 8 & 10\\
-    \end{bmatrix} = 
-    \begin{bmatrix}
-        1 & 0 & 0\\
-        2 & 1 & 0\\
-        3 & 1 & 1\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        1 & 2 & 2 & 2\\
-        0 & 0 & 2 & 4\\
-        0 & 0 & 0 & 0\\
-    \end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 2 & 2\\
+2 & 4 & 6 & 8\\
+3 & 6 & 8 & 10\\
+\end{bmatrix} = 
+\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+3 & 1 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 2 & 2\\
+0 & 0 & 2 & 4\\
+0 & 0 & 0 & 0\\
+\end{bmatrix}
 $$
 在这里先停一下。可以看出：（1）$\pmb{U}$ 的主元有 2 个，称该矩阵的秩（*rank*）为 2，即存在 **2 个有效方程**；（2）**未知数有 4 个**，而根据数学常识，两个方程只能求解 2 个未知数，因此 $\pmb{A}\pmb{x}=\pmb{0}$ 不受约束的自由变量还剩 4-2=2 个。
 
@@ -139,84 +139,84 @@ $$
 
 由于 $\pmb{U}$ 的主元分别对应于 $x_1$ 与 $x_3$，我们不妨将剩下的 $x_2$ 与 $x_4$ 定为自由变量（这样做能与自由变量的概念相对应，避免出错），并设为 1、0 或 0、1。对应的特解 $\pmb{x}_1$、$\pmb{x}_2$ 以及方程组通解 $\pmb{x}$ 为：
 $$
-    \pmb{x}_1 = 
-    \begin{bmatrix}
-        -2\\ 1\\ 0\\ 0\\
-    \end{bmatrix}, \ 
-    \pmb{x}_2 = 
-    \begin{bmatrix}
-        2\\ 0\\ -2\\ 1\\
-    \end{bmatrix} \ \Longrightarrow \
-    \pmb{x} = a\pmb{x}_1+b\pmb{x}_2, \ a,b \in \mathbb{R}
+\pmb{x}_1 = 
+\begin{bmatrix}
+-2\\ 1\\ 0\\ 0\\
+\end{bmatrix}, \ 
+\pmb{x}_2 = 
+\begin{bmatrix}
+2\\ 0\\ -2\\ 1\\
+\end{bmatrix} \ \Longrightarrow \
+\pmb{x} = a\pmb{x}_1+b\pmb{x}_2, \ a,b \in \mathbb{R}
 $$
 
 ## 3.3 The Rank and the Row Reduced Form
 ### 3.3.1 行简化形式
 行简化矩阵 $\pmb{R}$ 在上三角矩阵 $\pmb{U}$ 的基础上进一步化简，使得（1）所有主元均为 1；（2）主元上下位置的元素均为 0。依旧以 3.2.2 的矩阵 $\pmb{A}$ 为例：
 $$
-    \pmb{R} = 
-    \begin{bmatrix}
-        1 & -1 & 0\\
-        0 & 0.5 & 0\\
-        0 & 0 & 0\\
-    \end{bmatrix} \pmb{U} = 
-    \begin{bmatrix}
-        1 & 2 & 0 & -2\\
-        0 & 0 & 1 & 2\\
-        0 & 0 & 0 & 0\\
-    \end{bmatrix}
+\pmb{R} = 
+\begin{bmatrix}
+1 & -1 & 0\\
+0 & 0.5 & 0\\
+0 & 0 & 0\\
+\end{bmatrix} \pmb{U} = 
+\begin{bmatrix}
+1 & 2 & 0 & -2\\
+0 & 0 & 1 & 2\\
+0 & 0 & 0 & 0\\
+\end{bmatrix}
 $$
 首先需要指出，$\pmb{Ax}=\pmb{0}$、$\pmb{Ux}=\pmb{0}$ 以及 $\pmb{Rx}=\pmb{0}$ 这三个方程的解是相同的，因此初等行变换并不会导致线性方程组的解产生变化。换句话说，$\pmb{A}$、$\pmb{U}$ 以及 $\pmb{R}$ 的零空间是相同的。其次，通过上述三者获取解的难度显然是逐次降低的。最后，为了说明行简化矩阵求解的优越性，请注意观察 $\pmb{R}$ 以及 $\pmb{x}_1$、$\pmb{x}_2$，是否发现其中的元素高度相似？自由变量位置分别为 0 或 1，而主元位置是自由变量系数的相反数？
 
 这个“奇技淫巧”的原理如下：一个理想状态下的 $\pmb{R}_i^{m \times n}$ 可以表示为分块矩阵，其中 $\pmb{I}$ 表示主元矩阵（单位阵），$\pmb{F}$ 表示自由变量矩阵：
 $$
-    \pmb{R}_i = 
-    \begin{bmatrix}
-        \pmb{I}_{r \times r} & \pmb{F}_{r \times (n-r)}\\
-        \pmb{0}_{(m-r) \times r} & \pmb{0}_{(m-r) \times (n-r)}\\
-    \end{bmatrix}
-    \tag{3-3-1}
+\pmb{R}_i = 
+\begin{bmatrix}
+\pmb{I}_{r \times r} & \pmb{F}_{r \times (n-r)}\\
+\pmb{0}_{(m-r) \times r} & \pmb{0}_{(m-r) \times (n-r)}\\
+\end{bmatrix}
+\tag{3-3-1}
 $$
 不失一般性地，我令 $\pmb{F}$ 为一个非方阵，它的底部甚至可以是一些纯 0 行，只要保证 $\pmb{R}_i$ 与 $\pmb{F}$ 的行数相等即可。接下来我们考察方程 $\pmb{R}_i\pmb{x}=\pmb{0}$ 的解。由于方程是欠定的，因此存在一些自由变量和秩次数个特解。换句话说我们可以构建一个零空间矩阵 $\pmb{N} \in \mathbb{R}^{n \times (n-r)}$，使得 $\pmb{R}_i\pmb{N}=\pmb{0} \in \mathbb{R}^{m \times (n-r)}$，$\pmb{N}$ 中的每一列构成线性方程组的一个特解。这一点同时照应了上一节提到的“特解数量为自由变量个数”的结论：
 $$
-    \pmb{N} = 
-    \begin{bmatrix}
-        -\pmb{F}_{r \times (n-r)}\\ \pmb{I}_{(n-r) \times (n-r)}\\
-    \end{bmatrix}
-    \tag{3-3-2}
+\pmb{N} = 
+\begin{bmatrix}
+-\pmb{F}_{r \times (n-r)}\\ \pmb{I}_{(n-r) \times (n-r)}\\
+\end{bmatrix}
+\tag{3-3-2}
 $$
 我们不妨再换个角度来审视这个过程，$\pmb{R}_i\pmb{x}=\pmb{0}$ 可以展开为：
 $$
-    \begin{bmatrix}
-        \pmb{I} & \pmb{F}\\
-        \pmb{0} & \pmb{0}\\
-    \end{bmatrix}
-    \begin{bmatrix}
-        \pmb{x}_{pivot}\\ \pmb{x}_{free}
-    \end{bmatrix} = \pmb{0}
-    \tag{3-3-3}
+\begin{bmatrix}
+\pmb{I} & \pmb{F}\\
+\pmb{0} & \pmb{0}\\
+\end{bmatrix}
+\begin{bmatrix}
+\pmb{x}_{pivot}\\ \pmb{x}_{free}
+\end{bmatrix} = \pmb{0}
+\tag{3-3-3}
 $$
 显然该等式成立的条件是：主元变量为自由变量的相反数，自由变量构成单位阵（即挨个等于1，剩下为0）。
 
 上述步骤说明了行简化矩阵与特解之间的对应关系，但前提是理想情况。对于需要列交换的情况还成立吗？显然成立，只不过我们需要从一个更具体的视角入手。以本节初给出的 $\pmb{R}$ 为例，将非主元的非零元素用字母替代，方便我们看清本质：
 $$
-    \pmb{R} = 
-    \begin{bmatrix}
-        1 & r_1 & 0 & r_2\\
-        0 & 0 & 1 & r_3\\
-        0 & 0 & 0 & 0\\
-    \end{bmatrix}
+\pmb{R} = 
+\begin{bmatrix}
+1 & r_1 & 0 & r_2\\
+0 & 0 & 1 & r_3\\
+0 & 0 & 0 & 0\\
+\end{bmatrix}
 $$
 自由变量分别为第 2、第 4 变量，因此提前写出两个特解：
 $$
-    \pmb{x}_1 = 
-    \begin{bmatrix}
-        ?\\ 1\\ ?\\ 0\\
-    \end{bmatrix}, \ 
-    \pmb{x}_2 = 
-    \begin{bmatrix}
-        ?\\ 0\\ ?\\ 1\\
-    \end{bmatrix}
+\pmb{x}_1 = 
+\begin{bmatrix}
+?\\ 1\\ ?\\ 0\\
+\end{bmatrix}, \ 
+\pmb{x}_2 = 
+\begin{bmatrix}
+?\\ 0\\ ?\\ 1\\
+\end{bmatrix}
 $$
 第一自由变量所在列为 $\pmb{R}(:,1)$，且仅 $\pmb{R}(0,1)$ 不为 0，则在特解 $\pmb{x}_1$ 中由上至下依次填入 $-r_1$ 与 $0$；第二自由变量所在列为 $\pmb{R}(:,3)$，在特解 $\pmb{x}_2$ 中由上至下依次填入 $-r_2$、$-r_3$。以由于我们已经把数值变量化了，因此通过表达式可以轻松证明以上操作步骤的成立。
 
@@ -235,95 +235,95 @@ $$
 ### 3.4.1 可解性与解的结构
 先前我们讨论了线性方程组 $\pmb{Ax}=\pmb{b}$ 有解的条件，即 $\pmb{b} \in \pmb{C}(\pmb{A})$，之后以 $\pmb{Ax}=\pmb{0}$ 为例讲解了**齐次线性方程组**的解法。现在来看看非齐次方程组的求解流程。例如：
 $$
-    \pmb{A} = 
-    \begin{bmatrix}
-        1 & 2 & 2 & 2\\
-        2 & 4 & 6 & 8\\
-        3 & 6 & 8 & 10\\
-    \end{bmatrix}, \ \pmb{b} = 
-    \begin{bmatrix}
-        1\\ 5\\ 6\\
-    \end{bmatrix}
+\pmb{A} = 
+\begin{bmatrix}
+1 & 2 & 2 & 2\\
+2 & 4 & 6 & 8\\
+3 & 6 & 8 & 10\\
+\end{bmatrix}, \ \pmb{b} = 
+\begin{bmatrix}
+1\\ 5\\ 6\\
+\end{bmatrix}
 $$
 （1）通过 LU 分解化简增广系数矩阵 $\tilde{\pmb{A}}$：
 $$
-    \begin{align}
-        \notag
-        \pmb{E}_{to2} \pmb{E}_{to1} \pmb{A} &= 
-        \begin{bmatrix}
-            1 & 0 & 0\\
-            0 & 1 & 0\\
-            0 & -1 & 0\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            1 & 0 & 0\\
-            -2 & 1 & 0\\
-            -3 & 0 & 1\\
-        \end{bmatrix} \pmb{A} = 
-        \begin{bmatrix}
-            1 & 2 & 2 & 2\\
-            0 & 0 & 2 & 4\\
-            0 & 0 & 0 & 0\\
-        \end{bmatrix} = \pmb{U}\\
-        \notag
-        \ \\
-        \notag
-        \tilde{\pmb{A}} &= 
-        \begin{bmatrix}
-            1 & 0 & 0\\
-            2 & 1 & 0\\
-            3 & 1 & 1\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            1 & 2 & 2 & 2 \ | \ 1\\
-            0 & 0 & 2 & 4 \ | \ 3\\
-            0 & 0 & 0 & 0 \ | \ 0\\
-        \end{bmatrix}
-    \end{align}
+\begin{align}
+\notag
+\pmb{E}_{to2} \pmb{E}_{to1} \pmb{A} &= 
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & -1 & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0\\
+-2 & 1 & 0\\
+-3 & 0 & 1\\
+\end{bmatrix} \pmb{A} = 
+\begin{bmatrix}
+1 & 2 & 2 & 2\\
+0 & 0 & 2 & 4\\
+0 & 0 & 0 & 0\\
+\end{bmatrix} = \pmb{U}\\
+\notag
+\ \\
+\notag
+\tilde{\pmb{A}} &= 
+\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+3 & 1 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 2 & 2 \ | \ 1\\
+0 & 0 & 2 & 4 \ | \ 3\\
+0 & 0 & 0 & 0 \ | \ 0\\
+\end{bmatrix}
+\end{align}
 $$
 （2）将所有自由变量（本例中为 $x_2$、$x_4$）设为 0，求出特解 $\pmb{x}_p$：
 $$
-    \begin{cases}
-        x_1+2x_3=1\\
-        2x_3=3\\
-    \end{cases} \ \Longrightarrow \ \pmb{x}_p =
-    \begin{bmatrix}
-        -2\\ 0\\ 1.5\\ 0\\
-    \end{bmatrix}
+\begin{cases}
+x_1+2x_3=1\\
+2x_3=3\\
+\end{cases} \ \Longrightarrow \ \pmb{x}_p =
+\begin{bmatrix}
+-2\\ 0\\ 1.5\\ 0\\
+\end{bmatrix}
 $$
 （3）求出 $\pmb{A}$ 的零空间 $\pmb{N}(\pmb{A})$ 作为通解 $\pmb{x}_n$：
 $$
-    \pmb{Ax}=\pmb{0} \ \Longrightarrow \ \pmb{Ux}=\pmb{0} \ \Longrightarrow \ \pmb{Rx}=\pmb{0}, \ \pmb{R} = 
-    \begin{bmatrix}
-        1 & 2 & 0 & -2\\
-        0 & 0 & 1 & 2\\
-        0 & 0 & 0 & 0\\
-    \end{bmatrix}\\
-    \ \\
-    \pmb{x}_n = k_1 
-    \begin{bmatrix}
-        -2\\ 1\\ 0\\ 0\\
-    \end{bmatrix} + k_2 
-    \begin{bmatrix}
-        2\\ 0\\ -2\\ 1\\
-    \end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
+\pmb{Ax}=\pmb{0} \ \Longrightarrow \ \pmb{Ux}=\pmb{0} \ \Longrightarrow \ \pmb{Rx}=\pmb{0}, \ \pmb{R} = 
+\begin{bmatrix}
+1 & 2 & 0 & -2\\
+0 & 0 & 1 & 2\\
+0 & 0 & 0 & 0\\
+\end{bmatrix}\\
+\ \\
+\pmb{x}_n = k_1 
+\begin{bmatrix}
+-2\\ 1\\ 0\\ 0\\
+\end{bmatrix} + k_2 
+\begin{bmatrix}
+2\\ 0\\ -2\\ 1\\
+\end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
 $$
 （4）合并通解与特解，得到全解 $\pmb{x} = \pmb{x}_p + \pmb{x}_n$：
 $$
-    \pmb{x} = 
-    \begin{bmatrix}
-        -2\\ 0\\ 1.5\\ 0\\
-    \end{bmatrix} + k_1 
-    \begin{bmatrix}
-        -2\\ 1\\ 0\\ 0\\
-    \end{bmatrix} + k_2 
-    \begin{bmatrix}
-        2\\ 0\\ -2\\ 1\\
-    \end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
+\pmb{x} = 
+\begin{bmatrix}
+-2\\ 0\\ 1.5\\ 0\\
+\end{bmatrix} + k_1 
+\begin{bmatrix}
+-2\\ 1\\ 0\\ 0\\
+\end{bmatrix} + k_2 
+\begin{bmatrix}
+2\\ 0\\ -2\\ 1\\
+\end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
 $$
 $$
-    \pmb{A}(\pmb{x}_p+\pmb{x}_n) = \pmb{b} + \pmb{0} = \pmb{b}
-    \tag{3-4-1}
+\pmb{A}(\pmb{x}_p+\pmb{x}_n) = \pmb{b} + \pmb{0} = \pmb{b}
+\tag{3-4-1}
 $$
 在本例中，全解表现为 $\mathbb{R}^4$ 空间中的一个二维平面，注意它并非子空间。我们可以说 $\pmb{N}(\pmb{A})$ 是 $\mathbb{R}^4$ 的一个子空间，它在欧式几何上表现为过零元的一个平面。而 $\pmb{x}$ 是一个经过特解点 $\pmb{x}_p$ 的平面，相当于将 $\pmb{N}(\pmb{A})$ 进行平移后的结果。因为这个空间内没有零元，所以它不是子空间。
 
@@ -355,8 +355,8 @@ $$
 ### 3.5.2 生成空间 & 基 & 维数
 类似于列空间，我们可以在广义层面上定义一个由向量组 $\{\pmb{v}_1,\pmb{v}_2,\cdots,\pmb{v}_n\}$ 张成（生成）的空间 $\pmb{S}$：
 $$
-    \forall \ k_i \in \mathbb{R}, \ \ \sum_{i=1}^{n} {k_i \pmb{v}_i} \in \pmb{S}
-    \tag{3-5-1}
+\forall \ k_i \in \mathbb{R}, \ \ \sum_{i=1}^{n} {k_i \pmb{v}_i} \in \pmb{S}
+\tag{3-5-1}
 $$
 对于一个生成空间，其内部自然由无数个向量构成。这些向量可能是相关的，也可能是无关的。我们关心的问题常常是：能否找到一组个数最少的向量，从而足以构成整个空间。换句话说，我们总是希望能够寻找到空间的一组**基**来描述整个空间的某些特性。基向量一般需满足以下特点：
 
@@ -373,54 +373,54 @@ $$
 ### 3.5.3 矩阵空间、函数空间的基
 独立性、基和维数的概念不仅限于向量，从泛函分析的角度，它们还能拓展至矩阵空间、函数空间等各种空间。例如一个包含全体二阶方阵的矩阵空间 $\pmb{M}$，它的基 $\{\pmb{A}_1, \pmb{A}_2, \pmb{A}_3, \pmb{A}_4\}$ 以及生成空间 $span\{\pmb{A}\}$ 分别为：
 $$
-    \begin{align}
-        \notag \pmb{A}_1, \pmb{A}_2, \pmb{A}_3, \pmb{A}_4 &= 
-        \begin{bmatrix}
-            1 & 0\\
-            0 & 0\\
-        \end{bmatrix},
-        \begin{bmatrix}
-            0 & 1\\
-            0 & 0\\
-        \end{bmatrix},
-        \begin{bmatrix}
-            0 & 0\\
-            1 & 0\\
-        \end{bmatrix},
-        \begin{bmatrix}
-            0 & 0\\
-            0 & 1\\
-        \end{bmatrix}\\
-        \notag \ \\
-        \notag span\{\pmb{A}\} &= \sum_{i=1}^4 {k_i \pmb{A}_i} = 
-        \begin{bmatrix}
-            c_1 & c_2\\
-            c_3 & c_4\\
-        \end{bmatrix}
-    \end{align}
+\begin{align}
+\notag \pmb{A}_1, \pmb{A}_2, \pmb{A}_3, \pmb{A}_4 &= 
+\begin{bmatrix}
+1 & 0\\
+0 & 0\\
+\end{bmatrix},
+\begin{bmatrix}
+0 & 1\\
+0 & 0\\
+\end{bmatrix},
+\begin{bmatrix}
+0 & 0\\
+1 & 0\\
+\end{bmatrix},
+\begin{bmatrix}
+0 & 0\\
+0 & 1\\
+\end{bmatrix}\\
+\notag \ \\
+\notag span\{\pmb{A}\} &= \sum_{i=1}^4 {k_i \pmb{A}_i} = 
+\begin{bmatrix}
+c_1 & c_2\\
+c_3 & c_4\\
+\end{bmatrix}
+\end{align}
 $$
 此时，我们考虑的对象不再是单个维度的向量，而是二阶方阵。其中每一个元素的“0/1”状态都是彼此独立的，因此空间 $\pmb{M}$ 的维数为 4，与矩阵元素个数相同。更一般地，$\mathbb{R}^{n \times n}$ 的矩阵空间 $\pmb{M}$ 的维数为 $n^2$。
 
 注意到 $\pmb{A}_1$、$\pmb{A}_2$ 以及 $\pmb{A}_4$ 都是上三角矩阵空间 $\pmb{U}$（$\pmb{M}$ 的子空间）的基，在 $\mathbb{R}^{2 \times 2}$ 矩阵空间中，$\pmb{U}$ 的维数显然为 3。进一步地，在 $\mathbb{R}^{n \times n}$ 矩阵空间中，$\pmb{U}$ 的维数与矩阵中可变状态的元素个数相等，即：
 $$
-    \begin{bmatrix}
-        m_{0,0} & m_{0,1} & \cdots & m_{0,n-1}\\
-        0 & m_{1,1} & \cdots & m_{1,n-1}\\
-        \vdots & \vdots & \ddots & \vdots\\
-        0 & 0 & \cdots & m_{n-1,n-1}
-    \end{bmatrix} \ \Longrightarrow \ \dfrac{1}{2} (n^2-n) + n = \dfrac{1}{2} n^2 + \dfrac{1}{2} n
+\begin{bmatrix}
+m_{0,0} & m_{0,1} & \cdots & m_{0,n-1}\\
+0 & m_{1,1} & \cdots & m_{1,n-1}\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & m_{n-1,n-1}
+\end{bmatrix} \ \Longrightarrow \ \dfrac{1}{2} (n^2-n) + n = \dfrac{1}{2} n^2 + \dfrac{1}{2} n
 $$
 类似地，我们可以推导出其它子空间的维数，例如 $n$ 阶对角阵空间 $\pmb{D}$ 的维数为 $n$、$n$ 阶对称阵 $\pmb{S}$ 的维数为 $\dfrac{1}{2}n^2+\dfrac{1}{2}n$ 等等。
 
 类似向量空间、矩阵空间，函数空间指一群具有特定结构，或满足特殊功能的函数集合。我们来看三个微分特征方程以及它们的解集：
 $$
-    \begin{align}
-        \notag \dfrac{d^2y}{dx^2} &= 0 \ \Longrightarrow \ y = c x + d\\
-        \notag \ \\
-        \notag \dfrac{d^2y}{dx^2} &= -y \ \Longrightarrow \ y = c sinx + d cosx\\
-        \notag \ \\
-        \notag \dfrac{d^2y}{dx^2} &= y \ \Longrightarrow \ y = c e^x + d e^{-x}
-    \end{align}
+\begin{align}
+\notag \dfrac{d^2y}{dx^2} &= 0 \ \Longrightarrow \ y = c x + d\\
+\notag \ \\
+\notag \dfrac{d^2y}{dx^2} &= -y \ \Longrightarrow \ y = c sinx + d cosx\\
+\notag \ \\
+\notag \dfrac{d^2y}{dx^2} &= y \ \Longrightarrow \ y = c e^x + d e^{-x}
+\end{align}
 $$
 对于第一个微分方程，它的解空间有两个基：$x$ 与 1，它们是二阶导数的“零空间”。以此类推，第二个微分方程解空间的基为 $sinx$ 与 $cosx$，第三个为 $e^x$ 与 $e^{-x}$。这些空间的基不再是向量或者矩阵，而是函数，因而得名“函数空间”。需要注意的是，并非所有微分方程的解都能构成函数空间，正如并非所有向量（矩阵）能够成对应空间一样。例如非齐次微分方程 $y''=2$，其特解为 $y=x^2$，通解为对应齐次微分方程的解 $y=cx+d$，全解为 $y=x^2+cx+d$，显然这些函数簇并不满足线性可加性（二次项的系数固定为 1），因此它们无法构成线性子空间。
 
@@ -458,61 +458,61 @@ $$
 
 （4）对于左零空间 $\pmb{N}\left(\pmb{A}^T\right)$，根据定义有 $\pmb{A}^T \pmb{y} = \pmb{0}$，即 $\pmb{y}^T \pmb{A} = \pmb{0}$，这个结果很像我推导空间滤波器的形式。这里我们还是先用列向量形式。以如下所示的矩阵 $\pmb{A}$ 为例：
 $$
-    \pmb{A} = 
-    \begin{bmatrix}
-        1 & 2 & 3 & 1\\
-        1 & 1 & 2 & 1\\
-        1 & 2 & 3 & 1\\
-    \end{bmatrix}
+\pmb{A} = 
+\begin{bmatrix}
+1 & 2 & 3 & 1\\
+1 & 1 & 2 & 1\\
+1 & 2 & 3 & 1\\
+\end{bmatrix}
 $$
 通过 *Guass-Jordan* 消元法，可以同步获取行简化矩阵 $\pmb{R}$ 与左乘操作矩阵 $\pmb{E}$（当矩阵为方阵时，$\pmb{E} = {\pmb{A}}^{-1}$）：
 $$
-    \pmb{E}_{m \times m} 
-    \begin{bmatrix}
-        \pmb{A}_{m \times n} & I_{m \times m}
-    \end{bmatrix} = 
-    \begin{bmatrix}
-        \pmb{R}_{m \times n} & E_{m \times m}
-    \end{bmatrix}\\
-    \ \\
-    \begin{align}
-        \notag \begin{bmatrix}
-            1 & 2 & 0\\
-            0 & -1 & 0\\
-            0 & 0 & 1\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            1 & 0 & 0\\
-            -1 & 1 & 0\\
-            -1 & 0 & 1\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            1 & 2 & 3 & 1\\
-            1 & 1 & 2 & 1\\
-            1 & 2 & 3 & 1\\
-        \end{bmatrix} &= 
-        \begin{bmatrix}
-            1 & 0 & 1 & 1\\
-            0 & 1 & 1 & 0\\
-            0 & 0 & 0 & 0\\
-        \end{bmatrix}\\
-        \notag \ \\
-        \notag \begin{bmatrix}
-            -1 & 2 & 0\\
-            1 & -1 & 0\\
-            -1 & 0 & 1\\
-        \end{bmatrix}
-        \begin{bmatrix}
-            1 & 2 & 3 & 1\\
-            1 & 1 & 2 & 1\\
-            1 & 2 & 3 & 1\\
-        \end{bmatrix} &= 
-        \begin{bmatrix}
-            1 & 0 & 1 & 1\\
-            0 & 1 & 1 & 0\\
-            0 & 0 & 0 & 0\\
-        \end{bmatrix}
-    \end{align}
+\pmb{E}_{m \times m} 
+\begin{bmatrix}
+\pmb{A}_{m \times n} & I_{m \times m}
+\end{bmatrix} = 
+\begin{bmatrix}
+\pmb{R}_{m \times n} & E_{m \times m}
+\end{bmatrix}\\
+\ \\
+\begin{align}
+\notag \begin{bmatrix}
+1 & 2 & 0\\
+0 & -1 & 0\\
+0 & 0 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0\\
+-1 & 1 & 0\\
+-1 & 0 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 3 & 1\\
+1 & 1 & 2 & 1\\
+1 & 2 & 3 & 1\\
+\end{bmatrix} &= 
+\begin{bmatrix}
+1 & 0 & 1 & 1\\
+0 & 1 & 1 & 0\\
+0 & 0 & 0 & 0\\
+\end{bmatrix}\\
+\notag \ \\
+\notag \begin{bmatrix}
+-1 & 2 & 0\\
+1 & -1 & 0\\
+-1 & 0 & 1\\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 3 & 1\\
+1 & 1 & 2 & 1\\
+1 & 2 & 3 & 1\\
+\end{bmatrix} &= 
+\begin{bmatrix}
+1 & 0 & 1 & 1\\
+0 & 1 & 1 & 0\\
+0 & 0 & 0 & 0\\
+\end{bmatrix}
+\end{align}
 $$
 在本例中，事实上我们已经找到了一个 $\pmb{N}\left(\pmb{A}^T\right)$ 的基，即行向量 $\pmb{E}(-1,:)$。需要明确的概念是，$\pmb{N}(\pmb{A})$ 寻找的是使得 $\pmb{A}$ 各列组合为 $\pmb{0}$ 的向量，而 $\pmb{N}\left(\pmb{A}^T\right)$ 寻找的是使得 $\pmb{A}$ 各行组合为 $\pmb{0}$ 的向量，即对应于 $\pmb{E}$。当然我们不太可能总是从 $\pmb{E}$ 中能够直接找到答案，因此将原矩阵转置后求解零空间依然不失为一种合理且靠谱的手段。
 
@@ -522,83 +522,83 @@ $$
 
 在此之前，我们先来回顾一下如何在已有空间的基础上构建子空间。以对角阵空间 $\pmb{D}$（3 维）为例：
 $$
-    \pmb{D} = \pmb{S} \cap \pmb{U}
-    \tag{3-7-1}
+\pmb{D} = \pmb{S} \cap \pmb{U}
+\tag{3-7-1}
 $$
 （子）空间的交集一般仍是子空间，然而（子）空间的并集往往不再是线性空间。从广义的空间角度来看，子空间是原始空间的一个“切片”（例如 3 维空间中过零点的平面），子空间的交集是“切片”的“切片”（例如两个相交平面的过零点交线），因此它能够保留形成空间所需的特性；子空间的并集是两个“切片”的**简单加和**，例如 3 维空间中的两条相交直线，这个空间还有大量空白的部分需要“填补”才能形成一个**完备**的线性空间。
 
 除了交集以外，**空间加和**也是一种简单直观的线性空间构建方法：
 $$
-    \pmb{S} + \pmb{U} = \{k_1 \pmb{s} + k_2 \pmb{u}\}, \ \forall \ k_1,k_2 \in \mathbb{R}
-    \tag{3-7-2}
+\pmb{S} + \pmb{U} = \{k_1 \pmb{s} + k_2 \pmb{u}\}, \ \forall \ k_1,k_2 \in \mathbb{R}
+\tag{3-7-2}
 $$
 注意 $\pmb{S} + \pmb{U}$ 的范围（9 维）已经达到了 $\pmb{M}$，即它包含了任意 3 阶方阵。一般地：
 $$
-    dim(\pmb{S}) + dim(\pmb{U}) = dim(\pmb{S} \cap \pmb{U}) + dim(\pmb{S} + \pmb{U})
-    \tag{3-7-3}
+dim(\pmb{S}) + dim(\pmb{U}) = dim(\pmb{S} \cap \pmb{U}) + dim(\pmb{S} + \pmb{U})
+\tag{3-7-3}
 $$
 
 ### 3.7.2 秩 1 矩阵
 以 $\pmb{A}$ 为例：
 $$
-    \pmb{A} = 
-    \begin{bmatrix}
-        1 & 4 & 5\\
-        2 & 8 & 10\\
-    \end{bmatrix} = \underbrace{
-        \begin{bmatrix}
-            1\\ 2
-        \end{bmatrix}}_{\pmb{u}} \underbrace{
-            \begin{bmatrix}
-                1 & 4 & 5\\
-            \end{bmatrix}}_{\pmb{v}^T}
+\pmb{A} = 
+\begin{bmatrix}
+1 & 4 & 5\\
+2 & 8 & 10\\
+\end{bmatrix} = \underbrace{
+\begin{bmatrix}
+1\\ 2
+\end{bmatrix}}_{\pmb{u}} \underbrace{
+\begin{bmatrix}
+1 & 4 & 5\\
+\end{bmatrix}}_{\pmb{v}^T}
 $$
 这是一个典型的秩 1 矩阵，即 $dim\left(\pmb{C}(\pmb{A})\right) = rank\left(\pmb{A}\right) = dim\left(\pmb{C}\left(\pmb{A}^T\right)\right) = 1$。任意一个秩 1 矩阵 $\pmb{A}$ 都能表示为列向量与行向量的乘积 $\pmb{u}\pmb{v}^T$。类似乐高积木，秩 1 矩阵可视为其它矩阵的基本构成单位：一个秩为 $r$ 的矩阵可由 $r$ 个秩 1 矩阵线性组合而成。也正因此，秩 1 矩阵集合并不是一个子空间，因为它不满足可加性。
 
 接下来是另外一个案例，在 $\mathbb{R}^4$ 中，对于一个长度为 4 的列向量 $\pmb{v}$，寻找使得各分量之和为 0 的所有向量构成的集合 $\pmb{S}$：
 $$
-    \pmb{v} = 
-    \begin{bmatrix}
-        v_1\\ v_2\\ v_3\\ v_4\\
-    \end{bmatrix}, \ \pmb{S} = \{\pmb{v} | \sum_{i=1}^4{v_i}=0\}
+\pmb{v} = 
+\begin{bmatrix}
+v_1\\ v_2\\ v_3\\ v_4\\
+\end{bmatrix}, \ \pmb{S} = \{\pmb{v} | \sum_{i=1}^4{v_i}=0\}
 $$
 $\pmb{S}$ 是 $\mathbb{R}^4$ 的一个线性子空间。尽管它由四维向量组成，但是它的维度是 3。后者似乎不如前者那么明显，我们可以从零空间的角度来看 $\pmb{S}$：
 $$
-    \pmb{S}=\pmb{N}(\pmb{A}), \ \pmb{A}=
-    \begin{bmatrix}
-        1 & 1 & 1 & 1\\
-    \end{bmatrix} \ \Longrightarrow \ \pmb{Av}=\pmb{0}
+\pmb{S}=\pmb{N}(\pmb{A}), \ \pmb{A}=
+\begin{bmatrix}
+1 & 1 & 1 & 1\\
+\end{bmatrix} \ \Longrightarrow \ \pmb{Av}=\pmb{0}
 $$
 $\pmb{A}$ 是一个秩 1 矩阵，自由变量个数为 3，因此 $\pmb{N}(\pmb{A})$（即 $\pmb{S}$）是 3 维空间，它的基为：
 $$
-    \pmb{s}_1 = 
-    \begin{bmatrix}
-        -1\\ 1\\ 0\\ 0\\
-    \end{bmatrix}, \ \pmb{s}_2 = 
-    \begin{bmatrix}
-        -1\\ 0\\ 1\\ 0\\
-    \end{bmatrix}, \ \pmb{s}_3 = 
-    \begin{bmatrix}
-        -1\\ 0\\ 0\\ 1\\
-    \end{bmatrix}
+\pmb{s}_1 = 
+\begin{bmatrix}
+-1\\ 1\\ 0\\ 0\\
+\end{bmatrix}, \ \pmb{s}_2 = 
+\begin{bmatrix}
+-1\\ 0\\ 1\\ 0\\
+\end{bmatrix}, \ \pmb{s}_3 = 
+\begin{bmatrix}
+-1\\ 0\\ 0\\ 1\\
+\end{bmatrix}
 $$
 同理我们可以得知，$\pmb{C}(\pmb{A})$ 的维度是 1，$\pmb{C}\left(\pmb{A}^T\right)$ 的维度是 1，$\pmb{N}\left(\pmb{A}^T\right)$ 的维度是 0。结合 3.6.2 的知识不难发现以下规律：
 $$
-    \forall \ \pmb{A} \in \mathbb{R}^{m \times n}, \ 
-    \begin{cases}
-        dim\left[\pmb{C}(\pmb{A})\right] + dim\left[\pmb{N}(\pmb{A})\right] = n\\
-        \ \\
-        dim\left[\pmb{C}\left(\pmb{A}^T\right)\right] + dim\left[\pmb{N}\left(\pmb{A}^T\right)\right] = m\\
-    \end{cases}
-    \tag{3-7-4}
+\forall \ \pmb{A} \in \mathbb{R}^{m \times n}, \ 
+\begin{cases}
+dim\left[\pmb{C}(\pmb{A})\right] + dim\left[\pmb{N}(\pmb{A})\right] = n\\
+\ \\
+dim\left[\pmb{C}\left(\pmb{A}^T\right)\right] + dim\left[\pmb{N}\left(\pmb{A}^T\right)\right] = m\\
+\end{cases}
+\tag{3-7-4}
 $$
 
 ## 3.8 Graphs & Networks
 ### 3.8.1 图与矩阵
 首先需要简单介绍一下“图”的概念：图是“边”与“结点”的集合，“边”连通各个“结点”。我们可以用一个关联矩阵（*Incidence matrix*） $\pmb{A}$ 来描述图：
 $$
-    Graph = \{edges (m),\ nodes(n)\} \ \Longrightarrow \ \pmb{A} \in \mathbb{R}^{m \times n}
-    \tag{3-8-1}
+Graph = \{edges (m),\ nodes(n)\} \ \Longrightarrow \ \pmb{A} \in \mathbb{R}^{m \times n}
+\tag{3-8-1}
 $$
 以下图所示的有向网络为例，接下来的各种分析都将基于类似的有向图展开。该网络由 4 个结点、5 条边构成：
 
@@ -606,28 +606,28 @@ $$
 
 关联矩阵的每一行表示一条边，每一列代表各个结点在不同边上的流动情况，流起点的值为 -1，流终点的值为 1。若该结点不在对应边上，则数值为 0。据此可以得出图示网络的关联矩阵 $\pmb{A} \in \mathbb{R}^{5 \times 4}$：
 $$
-    \pmb{A} = 
-    \begin{bmatrix}
-        -1 & 1 & 0 & 0\\
-        0 & -1 & 1 & 0\\
-        -1 & 0 & 1 & 0\\
-        -1 & 0 & 0 & 1\\
-        0 & 0 & -1 & 1\\
-    \end{bmatrix}
+\pmb{A} = 
+\begin{bmatrix}
+-1 & 1 & 0 & 0\\
+0 & -1 & 1 & 0\\
+-1 & 0 & 1 & 0\\
+-1 & 0 & 0 & 1\\
+0 & 0 & -1 & 1\\
+\end{bmatrix}
 $$
 此图存在两个回路（内部无回路的最小结构），观察对应的关联矩阵：
 $$
-    \pmb{A}_{123} = 
-    \begin{bmatrix}
-        -1 & 1 & 0 & 0\\
-        0 & -1 & 1 & 0\\
-        -1 & 0 & 1 & 0\\
-    \end{bmatrix}, \ \pmb{A}_{345} = 
-    \begin{bmatrix}
-        -1 & 0 & 1 & 0\\
-        -1 & 0 & 0 & 1\\
-        0 & 0 & -1 & 1\\
-    \end{bmatrix}
+\pmb{A}_{123} = 
+\begin{bmatrix}
+-1 & 1 & 0 & 0\\
+0 & -1 & 1 & 0\\
+-1 & 0 & 1 & 0\\
+\end{bmatrix}, \ \pmb{A}_{345} = 
+\begin{bmatrix}
+-1 & 0 & 1 & 0\\
+-1 & 0 & 0 & 1\\
+0 & 0 & -1 & 1\\
+\end{bmatrix}
 $$
 不难发现，**回路关联矩阵的行向量组（边）是线性相关的**，而且线性组合的方式与信息流向是完全一致的。例如回路 $\pmb{A}_{123}$，信息从结点 1 经过 结点 2 流向结点 3，另一条通路是直接从结点 1 至结点 3。按照向量的视角，应有 $\pmb{v}_{12} + \pmb{v}_{23} = \pmb{v}_{13}$，对应地 $\pmb{A}_{123}(0,:) + \pmb{A}_{123}(1,:) = \pmb{A}_{123}(2,:)$；同理在回路 $\pmb{A}_{345}$ 中，有 $\pmb{A}_{345}(0,:) + \pmb{A}_{345}(1,:) = \pmb{A}_{345}(2,:)$。相应地，如果图中没有回路，这种图称为“树”，**树的各行是线性无关的**。
 
@@ -636,21 +636,21 @@ $$
 ### 3.8.2 电路网络分析：零空间
 首先是零空间 $\pmb{N}\left(\pmb{A}\right)$，对应线性方程组为：
 $$
-    \pmb{Ax} = \pmb{0} \ \Longrightarrow \ 
-    \begin{cases}
-        x_2 - x_1 = 0\\
-        x_3 - x_2 = 0\\
-        x_3 - x_1 = 0\\
-        x_4 - x_1 = 0\\
-        x_4 - x_3 = 0\\
-    \end{cases}
+\pmb{Ax} = \pmb{0} \ \Longrightarrow \ 
+\begin{cases}
+x_2 - x_1 = 0\\
+x_3 - x_2 = 0\\
+x_3 - x_1 = 0\\
+x_4 - x_1 = 0\\
+x_4 - x_3 = 0\\
+\end{cases}
 $$
 其中 $\{x_1,x_2,x_3,x_4\}$ 在电路中表示**结点电势**，$\pmb{Ax}$ 表示各边上的**电势差**。由于该图是一个无源电路，因此电势差应当为 $\pmb{0}$。落实到具体方程的解，显然全零电势（$x_1=x_2=x_3=x_4=0$）与全等电势（$x_1=x_2=x_3=x_4=1$）均属于 $\pmb{N}\left(\pmb{A}\right)$，更进一步地：
 $$
-    \pmb{x} = k 
-    \begin{bmatrix}
-        1\\ 1\\ 1\\ 1\\
-    \end{bmatrix}, \ k \in \mathbb{R}
+\pmb{x} = k 
+\begin{bmatrix}
+1\\ 1\\ 1\\ 1\\
+\end{bmatrix}, \ k \in \mathbb{R}
 $$
 即有 $dim\left[\pmb{N}\left(\pmb{A}\right)\right]=1$，根据（3-7-4）可知，$rank(\pmb{A})=n-1=3$。事实上，$\forall \ \pmb{A} \in \mathbb{R}^{m \times n}$，均有 $dim\left[\pmb{N}\left(\pmb{A}\right)\right]=1$，$rank(\pmb{A})=n-1$。这一结论很好证明，对于有向图 $\pmb{A}$ 中的一条有向线段 $\vec{l}$（排序为 $l$），其两端端点分别为 $I$、$J$（排序为 $i$、$j$）：
 
@@ -665,52 +665,52 @@ $$
 ### 3.8.3 电路网络分析：左零空间
 接下来是左零空间 $\pmb{N}\left(\pmb{A}^T\right)$，对应的线性方程组为：
 $$
-    \begin{align}
-        \notag
-        \pmb{A}^T &= 
-        \begin{bmatrix}
-            -1 & 0 & -1 & -1 & 0\\
-            1 & -1 & 0 & 0 & 0\\
-            0 & 1 & 1 & 0 & -1\\
-            0 & 0 & 0 & 1 & 1\\
-        \end{bmatrix}\\
-        \notag \ \\
-        \notag
-        \pmb{A}^T\pmb{y} &= \pmb{0} \ \Longrightarrow \ 
-        \begin{cases}
-            -y_1 - y_3 - y_4 = 0\\
-            y_1 - y_2 = 0\\
-            y_2 + y_3 - y_5 = 0\\
-            y_4 + y_5 = 0\\
-        \end{cases}
-    \end{align}
+\begin{align}
+\notag
+\pmb{A}^T &= 
+\begin{bmatrix}
+-1 & 0 & -1 & -1 & 0\\
+1 & -1 & 0 & 0 & 0\\
+0 & 1 & 1 & 0 & -1\\
+0 & 0 & 0 & 1 & 1\\
+\end{bmatrix}\\
+\notag \ \\
+\notag
+\pmb{A}^T\pmb{y} &= \pmb{0} \ \Longrightarrow \ 
+\begin{cases}
+-y_1 - y_3 - y_4 = 0\\
+y_1 - y_2 = 0\\
+y_2 + y_3 - y_5 = 0\\
+y_4 + y_5 = 0\\
+\end{cases}
+\end{align}
 $$
 既然 $\pmb{Ax}$ 中的 $\pmb{x}$ 表示**电势**，那么 $\pmb{A}^T\pmb{y}$ 中的 $\pmb{y}$ 呢？当然是与它不离不弃的**电流**了。由于结点上不会积累电荷，因此 $\pmb{A}^T\pmb{y}=\pmb{0}$ 描述的物理现象是：“**电路中任何一个结点上，任意时刻流入结点的电流之和等于流出结点的电流之和**”，这就是**基尔霍夫电流定律**（*Kirchoff's Current Law, KCL*）。
 
 我们来看方程组的全解：
 $$
-    \pmb{y} = k_1
-    \begin{bmatrix}
-        1\\ 1\\ -1\\ 0\\ 0\\
-    \end{bmatrix} + k_2
-    \begin{bmatrix}
-        0\\ 0\\ 1\\ -1\\ 1\\
-    \end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
+\pmb{y} = k_1
+\begin{bmatrix}
+1\\ 1\\ -1\\ 0\\ 0\\
+\end{bmatrix} + k_2
+\begin{bmatrix}
+0\\ 0\\ 1\\ -1\\ 1\\
+\end{bmatrix}, \ k_1,k_2 \in \mathbb{R}
 $$
 根据物理知识可知，电流可以仅存在于某个回路中，而不经过其它回路（例如短路），因此左零空间基向量的物理意义是**回路电流的分布情况**，且仅包含小回路。结合图示可知，小回路有 $\pmb{A}_{123}$、$\pmb{A}_{345}$ 两个，对应边为 $\{1,2,3\}$ 和 $\{3,4,5\}$，根据 *KCL* 定律可以轻松获得如上所示的两个基向量。换句话说，**关联矩阵左零空间的维度等于小回路个数**。当然，根据已有的线代知识，我们也应该知道 $dim\left[\pmb{N}\left(\pmb{A}^T\right)\right]=m-r=2$。
 
 我们来看看大回路有什么“问题”。本例中的大回路即为 $\pmb{A}_{1254}$，对应的解向量为：
 $$
-    \pmb{y}_{1254} = 
-    \begin{bmatrix}
-        1\\ 1\\ 0\\ -1\\ 1\\
-    \end{bmatrix} = 
-    \begin{bmatrix}
-        1\\ 1\\ -1\\ 0\\ 0\\
-    \end{bmatrix} + 
-    \begin{bmatrix}
-        0\\ 0\\ 1\\ -1\\ 1\\
-    \end{bmatrix} = \pmb{y}_{123} + \pmb{y}_{345}
+\pmb{y}_{1254} = 
+\begin{bmatrix}
+1\\ 1\\ 0\\ -1\\ 1\\
+\end{bmatrix} = 
+\begin{bmatrix}
+1\\ 1\\ -1\\ 0\\ 0\\
+\end{bmatrix} + 
+\begin{bmatrix}
+0\\ 0\\ 1\\ -1\\ 1\\
+\end{bmatrix} = \pmb{y}_{123} + \pmb{y}_{345}
 $$
 由上可见 $\pmb{y}_{1254}$ 无法作为 $\pmb{N}\left(\pmb{A}^T\right)$ 的基。因此在图网络分析中，我们只关注内部没有回路的最小回路，大回路对应的解向量通常可由内含的小回路线性组合而成。
 
@@ -719,16 +719,16 @@ $$
 ### 3.8.4 欧拉公式与欧姆定律
 结合前两节的分析可知：
 $$
-    \underbrace{dim\left[\pmb{N}(\pmb{A}^T)\right]}_{loops} = \underbrace{m}_{edges} - \underbrace{r}_{nodes-1} \ \Longrightarrow \
-    nodes - edges + loops = 1
-    \tag{3-8-2}
+\underbrace{dim\left[\pmb{N}(\pmb{A}^T)\right]}_{loops} = \underbrace{m}_{edges} - \underbrace{r}_{nodes-1} \ \Longrightarrow \
+nodes - edges + loops = 1
+\tag{3-8-2}
 $$
 这一结论其实是**欧拉定理**（*Euler's formula*）在**二维平面**上的表现。空间拓扑学中的欧拉定理内容是：“**在任何一个规则球面上，区域个数记作 $R$，顶点个数记作 $V$，边界个数记作 $E$，则有 $R+V-E=2$**”。当三维空间降维至二维平面时，$z$ 轴信息消失，大回路失去了独立构成区域的能力，相当于总区域数 $R$ 减少了一个，因此有 $R+V-E=1$，即（3-8-2）。
 
 至此，我们已经得到了描述电势、电流的两个电学基本公式 $\pmb{e}=\pmb{Ax}$、$\pmb{A}^T\pmb{y}=\pmb{f}$。根据我残存的电学知识（~~对不住了我的各位物理老师~~），**欧姆定律**是连接它们的桥梁：$\pmb{y}=\pmb{Ce}$，其中 $\pmb{C}$ 表示各边上的电导（电阻的倒数）。最后，让我们用一个平衡等式来结束短暂的应用数学之旅，它完整地描述了一个稳态电路在各结点、各边上的电学信息：
 $$
-    \pmb{A}^T\pmb{CAx}=\pmb{f}
-    \tag{3-8-3}
+\pmb{A}^T\pmb{CAx}=\pmb{f}
+\tag{3-8-3}
 $$
 最后的最后，还需要再提醒几点：
 
