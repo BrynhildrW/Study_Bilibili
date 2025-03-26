@@ -1,4 +1,6 @@
-## 6.5 Positive Definite Matrices
-### 6.5.1 
+# 7. Linear Transformations
+## 7.1 The Idea of a Linear Transformation
+
+## 7.2 The Matrix of a Linear Transformation
 
 
